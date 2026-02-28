@@ -5,6 +5,7 @@ venv/
 env/
 .env
 .direnv/
+.vscode/
 
 # ---
 __pycache__/
