@@ -3,16 +3,14 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - ci/deploy-stepcode-documentation
   workflow_dispatch:
 
-# Permisos necesarios para desplegar en Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Configuración de concurrencia: cancela despliegues en progreso si llega uno nuevo
 concurrency:
   group: "pages"
   cancel-in-progress: false
