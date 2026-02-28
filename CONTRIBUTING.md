@@ -117,7 +117,27 @@ All new features should include tests when possible.
 - Use descriptive variable and function names
 - Respect the project’s formatting and lint rules
 
-If linting or formatting tools are configured, make sure your code passes before committing.
+### Linting and Formatting
+
+Before commiting make sure to execute the following commands.
+
+Javascript:
+```bash
+# inspect errors
+npm run lint
+# format code
+npm run format
+```
+
+Python:
+```bash
+# inspect errors
+ruff check .
+# inspect and fix errors
+ruff check --fix .
+# format code
+ruff format .
+```
 
 ## Breaking Changes
 
