@@ -5,4 +5,4 @@ stepcode is a tool for generating static books with support for step-by-step pse
 ## chapters
 now programming concepts
 
-[variables](./chapters/1.variables.md)
+[variables](./chapters/1.variables.html)
