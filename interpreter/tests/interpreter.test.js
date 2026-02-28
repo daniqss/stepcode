@@ -3,47 +3,47 @@ import * as assert from 'node:assert';
 import { parse, step } from '../src/index.js';
 
 test('Interpreter: basic assignment and arithmetic', () => {
-    const ast = parse(`
+  const ast = parse(`
 n := 4
 m := n + 2
 x := m * 2
 `);
-    
-    let state = step(ast, null); // init
-    state = step(ast, state); // n := 4
-    assert.strictEqual(state.variables.n, 4);
-    
-    state = step(ast, state); // m := n + 2
-    assert.strictEqual(state.variables.m, 6);
-    
-    state = step(ast, state); // x := m * 2
-    assert.strictEqual(state.variables.x, 12);
-    
-    state = step(ast, state); // done
-    assert.strictEqual(state.currentLine, null);
+
+  let state = step(ast, null); // init
+  state = step(ast, state); // n := 4
+  assert.strictEqual(state.variables.n, 4);
+
+  state = step(ast, state); // m := n + 2
+  assert.strictEqual(state.variables.m, 6);
+
+  state = step(ast, state); // x := m * 2
+  assert.strictEqual(state.variables.x, 12);
+
+  state = step(ast, state); // done
+  assert.strictEqual(state.currentLine, null);
 });
 
 test('Interpreter: arrays', () => {
-    const ast = parse(`
+  const ast = parse(`
 x := [1, 2, 4, 5]
 x[1] := x[1] + 1
 l := len(x)
 `);
 
-    let state = step(ast, null);
-    let finalState = state;
-    while (true) {
-        if (state.currentLine === null && state.nextLine === null) break;
-        finalState = state;
-        state = step(ast, state);
-    }
-    
-    assert.deepStrictEqual(finalState.variables.x, [2, 2, 4, 5]);
-    assert.strictEqual(finalState.variables.l, 4);
+  let state = step(ast, null);
+  let finalState = state;
+  while (true) {
+    if (state.currentLine === null && state.nextLine === null) break;
+    finalState = state;
+    state = step(ast, state);
+  }
+
+  assert.deepStrictEqual(finalState.variables.x, [2, 2, 4, 5]);
+  assert.strictEqual(finalState.variables.l, 4);
 });
 
 test('Interpreter: if statement', () => {
-    const ast = parse(`
+  const ast = parse(`
 n := 0
 if true then
     n := 1
@@ -52,19 +52,19 @@ else
 end if
 `);
 
-    let state = step(ast, null);
-    let finalState = state;
-    while (true) {
-        if (state.currentLine === null && state.nextLine === null) break;
-        finalState = state;
-        state = step(ast, state);
-    }
-    
-    assert.strictEqual(finalState.variables.n, 1);
+  let state = step(ast, null);
+  let finalState = state;
+  while (true) {
+    if (state.currentLine === null && state.nextLine === null) break;
+    finalState = state;
+    state = step(ast, state);
+  }
+
+  assert.strictEqual(finalState.variables.n, 1);
 });
 
 test('Interpreter: while loop', () => {
-    const ast = parse(`
+  const ast = parse(`
 n := 3
 sum := 0
 while n > 0 do
@@ -73,34 +73,102 @@ while n > 0 do
 end while
 `);
 
-    let state = step(ast, null);
-    let finalState = state;
-    while (true) {
-        if (state.currentLine === null && state.nextLine === null) break;
-        finalState = state;
-        state = step(ast, state);
-    }
-    
-    assert.strictEqual(finalState.variables.n, 0);
-    assert.strictEqual(finalState.variables.sum, 6); // 3 + 2 + 1
+  let state = step(ast, null);
+  let finalState = state;
+  while (true) {
+    if (state.currentLine === null && state.nextLine === null) break;
+    finalState = state;
+    state = step(ast, state);
+  }
+
+  assert.strictEqual(finalState.variables.n, 0);
+  assert.strictEqual(finalState.variables.sum, 6); // 3 + 2 + 1
 });
 
 test('Interpreter: for to loop', () => {
-    const ast = parse(`
+  const ast = parse(`
 sum := 0
 for i = 1 to 4 do
     sum := sum + i
 end for
 `);
 
-    let state = step(ast, null);
-    let finalState = state;
-    while (true) {
-        if (state.currentLine === null && state.nextLine === null) break;
-        finalState = state;
-        state = step(ast, state);
-    }
-    
-    assert.strictEqual(finalState.variables.sum, 10); // 1 + 2 + 3 + 4
-    assert.strictEqual(finalState.variables.i, 4); // Ends at 4
+  let state = step(ast, null);
+  let finalState = state;
+  while (true) {
+    if (state.currentLine === null && state.nextLine === null) break;
+    finalState = state;
+    state = step(ast, state);
+  }
+
+  assert.strictEqual(finalState.variables.sum, 10); // 1 + 2 + 3 + 4
+  assert.strictEqual(
+    finalState.variables.hasOwnProperty('i'),
+    false,
+    'Variable i should not persist',
+  );
+});
+
+test('Interpreter: for downto loop', () => {
+  const ast = parse(`
+sum := 0
+for i = 4 downto 1 do
+    sum := sum + i
+end for
+`);
+
+  let state = step(ast, null);
+  let finalState = state;
+  while (true) {
+    if (state.currentLine === null && state.nextLine === null) break;
+    finalState = state;
+    state = step(ast, state);
+  }
+
+  assert.strictEqual(finalState.variables.sum, 10); // 4 + 3 + 2 + 1
+  assert.strictEqual(finalState.variables.hasOwnProperty('i'), false);
+});
+
+test('Interpreter: for loop break', () => {
+  const ast = parse(`
+sum := 0
+for i = 1 to 10 do
+    sum := sum + i
+    if i == 3 then
+        break
+    end if
+end for
+`);
+
+  let state = step(ast, null);
+  let finalState = state;
+  while (true) {
+    if (state.currentLine === null && state.nextLine === null) break;
+    finalState = state;
+    state = step(ast, state);
+  }
+
+  assert.strictEqual(finalState.variables.sum, 6); // 1 + 2 + 3
+  assert.strictEqual(finalState.variables.hasOwnProperty('i'), false);
+});
+
+test('Interpreter: for loop scoping (preserves outer variable)', () => {
+  const ast = parse(`
+i := 100
+sum := 0
+for i = 1 to 3 do
+    sum := sum + i
+end for
+`);
+
+  let state = step(ast, null);
+  let finalState = state;
+  while (true) {
+    if (state.currentLine === null && state.nextLine === null) break;
+    finalState = state;
+    state = step(ast, state);
+  }
+
+  assert.strictEqual(finalState.variables.sum, 6);
+  assert.strictEqual(finalState.variables.i, 100);
 });
