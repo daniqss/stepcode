@@ -41,12 +41,15 @@ Please keep the scope aligned with the project's goals.
 To contribute to **stepcode**, please follow this general workflow to ensure a smooth review process.
 
 ### 1. Environment Setup
+
 Before starting, ensure you have followed the installation instructions in the [README.md](./README.md). This includes setting up Python with `uv` and installing the necessary Node.js dependencies.
 
 If you use Nix, you can simply run `nix develop` or use `direnv` to automatically enter the development shell with all tools pre-installed.
 
 ### 2. Create a Branch
+
 Always create a new branch for your work. Use a descriptive name that follows our naming conventions:
+
 - `feat/your-feature-name`
 - `fix/your-bug-fix`
 - `docs/your-doc-change`
@@ -56,7 +59,9 @@ git checkout -b feat/short-description
 ```
 
 ### 3. Implementation and Local Testing
+
 While working on your changes, make sure to:
+
 - **Test the interpreter**: If you modify the core logic, run the tests in the `interpreter` directory.
   ```bash
   cd interpreter && npm test
@@ -67,6 +72,7 @@ While working on your changes, make sure to:
   ```
 
 ### 4. Code Quality
+
 Before committing, you must ensure your code follows the project's style guidelines. We use `eslint` and `prettier` for JavaScript, and `ruff` for Python.
 
 ```bash
@@ -80,11 +86,12 @@ ruff format .
 ```
 
 ### 5. Submit a Pull Request
+
 Once your changes are ready and verified:
+
 1. Push your branch to your fork.
 2. Open a Pull Request against the `main` branch of the original repository.
 3. Fill out the PR template completely so we understand the context of your changes.
-
 
 ## Commit Guidelines
 
