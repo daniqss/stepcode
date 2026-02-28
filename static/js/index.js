@@ -21,6 +21,7 @@ document.querySelectorAll('pre').forEach((pre) => {
   const lines = code.split('\n');
   let state = null;
   let running = false;
+  let history = [];
 
   const wrapper = document.createElement('div');
   wrapper.className = 'pseudo-runner';
@@ -29,9 +30,18 @@ document.querySelectorAll('pre').forEach((pre) => {
   const display = document.createElement('pre');
   wrapper.appendChild(display);
 
+  const controls = document.createElement('div');
+  controls.className = 'pseudo-runner-controls';
+  wrapper.appendChild(controls);
+
+  const prevBtn = document.createElement('button');
+  prevBtn.textContent = '⏮ Previous';
+  prevBtn.style.display = 'none';
+  controls.appendChild(prevBtn);
+
   const btn = document.createElement('button');
-  btn.textContent = '▶ Ejecutar';
-  wrapper.appendChild(btn);
+  btn.textContent = '▶ Run';
+  controls.appendChild(btn);
 
   function formatVars(variables) {
     const vars = Object.entries(variables || {})
@@ -64,13 +74,19 @@ document.querySelectorAll('pre').forEach((pre) => {
     }
 
     if (!state) {
-      // Do nothing
+      btn.textContent = '▶ Run';
+      running = false;
     } else if (state.nextLine === null) {
       const vars = formatVars(state.variables);
       rows.push(`<span class="indicator">&gt;&gt;&gt; ${vars}</span>`);
-      btn.textContent = '↺ Reiniciar';
+      btn.textContent = '↺ Restart';
       running = false;
+    } else {
+      btn.textContent = '⏭ Next';
+      running = true;
     }
+
+    prevBtn.style.display = history.length > 0 ? 'flex' : 'none';
 
     display.innerHTML = rows.join('\n');
   }
@@ -78,12 +94,19 @@ document.querySelectorAll('pre').forEach((pre) => {
   btn.addEventListener('click', () => {
     if (!running || !state || state.nextLine === null) {
       state = step(ast, null);
-      running = true;
-      btn.textContent = '⏭ Siguiente';
+      history = [];
     } else {
+      history.push(state);
       state = step(ast, state);
     }
     render();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (history.length > 0) {
+      state = history.pop();
+      render();
+    }
   });
 
   render();

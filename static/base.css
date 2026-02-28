@@ -255,8 +255,13 @@ td {
   line-height: 1.6;
 }
 
+.pseudo-runner-controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 .pseudo-runner button {
-  align-self: flex-start;
   background-color: var(--accent-color);
   color: white;
   border: none;
@@ -270,6 +275,7 @@ td {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.9rem;
+  line-height: 1.2;
 }
 
 .pseudo-runner button:hover {
@@ -283,14 +289,13 @@ td {
 }
 
 .pseudo-runner .indicator {
-  display: block;
   color: var(--accent-color);
   font-weight: bold;
   font-family: 'Consolas', 'Monaco', monospace;
   background-color: rgba(217, 70, 62, 0.1); /* Slight accent background */
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
-  margin: 0.2rem 0;
+  margin: 0;
 }
 
 @media (prefers-color-scheme: dark) {
