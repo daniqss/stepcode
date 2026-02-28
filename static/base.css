@@ -39,12 +39,63 @@ body {
   transition:
     background-color 0.3s,
     color 0.3s;
+  display: flex;
+  min-height: 100vh;
+}
+
+nav {
+  width: 280px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  background-color: var(--code-bg);
+  padding: 2rem 1.5rem;
+  flex-shrink: 0;
+  border-right: 1px solid var(--quote-border);
+}
+
+nav h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  padding-left: 1rem;
+}
+
+nav > ul {
+  padding-left: 0;
+}
+
+nav li {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+}
+
+nav a {
+  border-bottom: none;
+  color: var(--text-color);
+}
+
+nav a:hover, nav a.active {
+  color: var(--accent-color);
 }
 
 main {
+  flex-grow: 1;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 3rem 1.5rem;
+  padding: 3rem 2rem;
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: none;
+  }
 }
 
 h1,

@@ -1,4 +1,6 @@
-# stepcode
+---
+title: Welcome to Stepcode
+---
 
 ## Getting Started
 
