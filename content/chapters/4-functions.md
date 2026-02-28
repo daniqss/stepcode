@@ -20,7 +20,6 @@ function insertion_sort(arr)
     return arr
 end function
 
-// Using the function
 arr := insertion_sort([5, 2, 4, 6, 1, 3])
 ```
 
@@ -37,5 +36,5 @@ function factorial(n)
     end if
 end function
 
-result := factorial(5)   // result will be 120
+result := factorial(5)
 ```
