@@ -16,6 +16,8 @@
           python314
           uv
           ruff
+
+          nodejs
         ];
       };
     });

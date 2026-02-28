@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import * as assert from 'node:assert';
-import { parse, step } from '../src/index.js';
+import { step, parse } from '../../static/js/index.js';
 
 test('Interpreter: basic assignment and arithmetic', () => {
   const ast = parse(`

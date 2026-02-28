@@ -20,6 +20,7 @@ LAYOUT = """<!DOCTYPE html>
         {content}
         {navigation}
     </main>
+    <script type="module" src="{js_path}"></script>
 </body>
 </html>"""
 
@@ -80,6 +81,7 @@ INDEX_LAYOUT = """<!DOCTYPE html>
         {content}
         {navigation}
     </main>
+    <script type="module" src="{js_path}"></script>
 </body>
 </html>"""
 
@@ -154,7 +156,8 @@ def process_node(node, output_root, site_root, flat_tree, current_path=''):
         os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
         depth = node.path.count(os.sep) + node.path.count('/')
-        css_relative_path = '../' * depth + 'base.css'
+        css_relative_path = '../' * depth + 'static/base.css'
+        js_relative_path = '../' * depth + 'static/js/index.js'
 
         nav_html = render_nav_tree(site_root, node.path)
 
@@ -180,6 +183,7 @@ def process_node(node, output_root, site_root, flat_tree, current_path=''):
                 title=title,
                 content=node.page.render(),
                 css_path=css_relative_path,
+                js_path=js_relative_path,
                 navigation=navigation_html,
             )
         else:
@@ -187,6 +191,7 @@ def process_node(node, output_root, site_root, flat_tree, current_path=''):
                 title=title,
                 content=node.page.render(),
                 css_path=css_relative_path,
+                js_path=js_relative_path,
                 nav_tree=nav_html,
                 navigation=navigation_html,
             )
@@ -205,8 +210,8 @@ def write_output(root_node: DirNode, output_path: str) -> None:
     flat_tree = flatten_tree(root_node)
     process_node(root_node, output_path, root_node, flat_tree)
 
-    if os.path.exists('static/base.css'):
-        shutil.copy('static/base.css', os.path.join(output_path, 'base.css'))
-        print('copied base.css')
+    if os.path.exists('static'):
+        shutil.copytree('static', os.path.join(output_path, 'static'))
+        print('copied static directory')
     else:
-        print('Warning: base.css not found in root directory')
+        print('Warning: static directory not found in root directory')

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import readline from 'readline';
-import { parse, step } from './src/index.js';
+import { parse, step } from '../static/js/index.js';
 
 const file = process.argv[2];
 
