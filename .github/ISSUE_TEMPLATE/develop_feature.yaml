@@ -1,7 +1,7 @@
-name: "Develop Feature"
+name: 'Develop Feature'
 description: For contributors — technical proposals or internal changes
-title: "[Dev Feature]: "
-labels: ["enhancement", "dev"]
+title: '[Dev Feature]: '
+labels: ['enhancement', 'dev']
 
 body:
   - type: markdown
@@ -13,7 +13,7 @@ body:
     id: motivation
     attributes:
       label: Technical motivation
-      placeholder: "This change solves... / the current problem is..."
+      placeholder: 'This change solves... / the current problem is...'
     validations:
       required: true
 
@@ -22,12 +22,12 @@ body:
     attributes:
       label: Affected module
       options:
-        - "Interpreter core"
-        - "Parser / AST"
-        - "Generator"
-        - "CLI"
-        - "Test suite / CI"
-        - "Multiple"
+        - 'Interpreter core'
+        - 'Parser / AST'
+        - 'Generator'
+        - 'CLI'
+        - 'Test suite / CI'
+        - 'Multiple'
     validations:
       required: true
 
@@ -35,6 +35,6 @@ body:
     id: proposal
     attributes:
       label: Implementation proposal
-      placeholder: "API design, data structures, internal pseudocode..."
+      placeholder: 'API design, data structures, internal pseudocode...'
     validations:
       required: true

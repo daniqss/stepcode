@@ -81,7 +81,8 @@ nav a {
   color: var(--text-color);
 }
 
-nav a:hover, nav a.active {
+nav a:hover,
+nav a.active {
   color: var(--accent-color);
 }
 

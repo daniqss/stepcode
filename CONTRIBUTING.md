@@ -18,6 +18,7 @@ Please make sure to:
 As a user, you must follow our issue template `bug_report.yaml` when reporting bugs. This helps us understand and reproduce the issue more effectively.
 
 When reporting a bug, please include:
+
 - A clear and descriptive title
 - A detailed description of the issue
 - Steps to reproduce the bug
@@ -27,6 +28,7 @@ When reporting a bug, please include:
 ## Suggesting Features
 
 Feature requests should follow our issue template `feature_request.yaml` and include:
+
 - Clear explanation of the problem
 - Proposed solution
 - Alternatives considered (if any)
