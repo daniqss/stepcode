@@ -296,7 +296,12 @@ export class Parser {
 
   parseFactor() {
     let expr = this.parseUnary();
-    while (this.matchOperator('*') || this.matchOperator('/')) {
+    while (
+      this.matchOperator('*') ||
+      this.matchOperator('/') ||
+      this.matchOperator('//') ||
+      this.matchOperator('%')
+    ) {
       const operator = this.previous().value;
       const right = this.parseUnary();
       expr = { type: 'BinaryExpression', operator, left: expr, right };

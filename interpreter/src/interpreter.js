@@ -74,6 +74,10 @@ export function evaluateExpression(expr, stack, functions, evalState) {
           return left * right;
         case '/':
           return left / right;
+        case '//':
+          return Math.floor(left / right);
+        case '%':
+          return left % right;
         case '==':
           return left === right;
         case '!=':
