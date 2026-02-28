@@ -13,7 +13,6 @@ Please make sure to:
 - Check existing issues to avoid duplicates
 - Follow the Code of Conduct
 
-
 ## Reporting Bugs
 
 When opening a bug report, please include:
@@ -47,7 +46,7 @@ Please keep the scope aligned with the project's goals.
 ```bash
 git clone git@github.com:daniqss/stepcode.git
 cd project-name
-``` 
+```
 
 ### 3. Install dependencies
 
@@ -78,6 +77,7 @@ The project is divided into clearly separated domains:
 We follow **Conventional Commits**.
 
 Allowed types:
+
 - `feat:` New feature
 - `fix:` Bug fix
 - `refactor:` Code change that neither fixes a bug nor adds a feature
@@ -91,12 +91,14 @@ You may be asked to rebase unclear commits.
 ## Pull Requests
 
 Before submitting a pull request:
+
 - Ensure the project builds successfully
 - Run all tests
 - Keep PRs focused and small
 - Update documentation if necessary
 
 PR descriptions should clearly explain:
+
 - What changed
 - Why it changed
 - Any breaking changes
@@ -122,6 +124,7 @@ All new features should include tests when possible.
 Before commiting make sure to execute the following commands.
 
 Javascript:
+
 ```bash
 # inspect errors
 npm run lint
@@ -130,6 +133,7 @@ npm run format
 ```
 
 Python:
+
 ```bash
 # inspect errors
 ruff check .
@@ -142,6 +146,7 @@ ruff format .
 ## Breaking Changes
 
 Breaking changes must:
+
 - Be clearly documented in the PR
 - Include migration notes if necessary
 - Follow Semantic Versioning
