@@ -4,7 +4,7 @@
 [![Python: 3.14+](https://img.shields.io/badge/python-3.14+-blue.svg)](https://www.python.org/downloads/)
 [![Node: 18+](https://img.shields.io/badge/node-18+-green.svg)](https://nodejs.org/)
 
-![Example](assets/gifstepcode.gif)
+![Example](assets/example.gif)
 
 **stepcode** is a specialized tool for generating static books that feature interactive, step-by-step pseudocode execution. Designed for educators and students, it provides a powerful way to visualize algorithm logic and program flow directly in the browser.
 
