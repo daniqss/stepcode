@@ -64,6 +64,7 @@ document.querySelectorAll('pre').forEach((pre) => {
     }
 
     if (!state) {
+      // Do nothing
     } else if (state.nextLine === null) {
       const vars = formatVars(state.variables);
       rows.push(`<span class="indicator">&gt;&gt;&gt;\t\t\t${vars}</span>`);
