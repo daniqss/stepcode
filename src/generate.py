@@ -92,7 +92,7 @@ INDEX_LAYOUT = """<!DOCTYPE html>
 </body>
 </html>"""
 
-# ruff ignore??
+# fmt: skip
 FOOTER = """
 <div class="footer-content">
     <div class="footer-left">
@@ -118,7 +118,7 @@ FOOTER = """
         </a>
     </div>
 </div>
-"""
+"""  # noqa: E501
 
 
 def get_asset_path(current_file_path, asset_target):
