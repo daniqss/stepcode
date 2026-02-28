@@ -1,9 +1,10 @@
 import os
+import re
 import sys
 import tomllib
-import re
 from dataclasses import dataclass, field
-from typing import List, Union, Optional
+from typing import List, Optional, Union
+
 from frontmatter import Frontmatter
 from markdown import markdown
 
@@ -24,7 +25,7 @@ class Page:
             key = match.group(1).strip()
             return str(self.meta.get(key, match.group(0)))
 
-        return re.sub(r"\{\{(.+?)\}\}", replacer, self.content)
+        return re.sub(r'\{\{(.+?)\}\}', replacer, self.content)
 
 
 @dataclass
@@ -40,12 +41,12 @@ class FileNode(Node):
 
 @dataclass
 class DirNode(Node):
-    children: List[Union["DirNode", "FileNode"]] = field(default_factory=list)
+    children: List[Union['DirNode', 'FileNode']] = field(default_factory=list)
 
-    def add_child(self, node: Union["DirNode", "FileNode"]):
+    def add_child(self, node: Union['DirNode', 'FileNode']):
         self.children.append(node)
 
-    def get_child(self, name: str) -> Optional[Union["DirNode", "FileNode"]]:
+    def get_child(self, name: str) -> Optional[Union['DirNode', 'FileNode']]:
         for child in self.children:
             if child.name == name:
                 return child
@@ -60,56 +61,56 @@ class SiteConfig:
 
 
 def parse_config(config_path: str) -> SiteConfig:
-    toml_path = os.path.join(config_path, "stepcode.toml")
+    toml_path = os.path.join(config_path, 'stepcode.toml')
 
     if not os.path.exists(toml_path):
         sys.exit(f"Error: config file not found at '{toml_path}'")
 
     try:
-        with open(toml_path, "rb") as f:
+        with open(toml_path, 'rb') as f:
             data = tomllib.load(f)
     except tomllib.TOMLDecodeError as e:
         sys.exit(f"Error: could not parse '{toml_path}': {e}")
 
-    book_data = data.get("book")
+    book_data = data.get('book')
     if not book_data:
-        sys.exit("Error: missing [book] section in TOML")
+        sys.exit('Error: missing [book] section in TOML')
 
-    required = ["name", "author", "chapters"]
+    required = ['name', 'author', 'chapters']
     for field_name in required:
         if field_name not in book_data:
             sys.exit(f"Error: missing '{field_name}' in [book] section")
 
     return SiteConfig(
-        name=book_data["name"],
-        author=book_data["author"],
-        chapters=book_data["chapters"],
+        name=book_data['name'],
+        author=book_data['author'],
+        chapters=book_data['chapters'],
     )
 
 
 def load_page_content(full_path: str, relative_path: str) -> Page:
     if not os.path.exists(full_path):
-        sys.exit(f"Error: Chapter file not found: {full_path}")
+        sys.exit(f'Error: Chapter file not found: {full_path}')
 
-    with open(full_path, "r", encoding="utf-8") as f:
+    with open(full_path, 'r', encoding='utf-8') as f:
         raw = f.read()
 
     fm = Frontmatter.read(raw)
-    body = fm["body"] if fm["body"] else raw
-    html = markdown(body, extensions=["fenced_code", "tables"])
+    body = fm['body'] if fm['body'] else raw
+    html = markdown(body, extensions=['fenced_code', 'tables'])
 
-    return Page(meta=fm["attributes"] or {}, content=html, raw_path=relative_path)
+    return Page(meta=fm['attributes'] or {}, content=html, raw_path=relative_path)
 
 
 def build_site_tree(config: SiteConfig, content_root: str) -> DirNode:
-    root = DirNode(name="root", path="")
+    root = DirNode(name='root', path='')
 
-    index_path = os.path.join(content_root, "index.md")
+    index_path = os.path.join(content_root, 'index.md')
     if os.path.exists(index_path):
-        page_obj = load_page_content(index_path, "index.md")
-        file_node = FileNode(name="index.md", path="index.md", page=page_obj)
+        page_obj = load_page_content(index_path, 'index.md')
+        file_node = FileNode(name='index.md', path='index.md', page=page_obj)
         root.add_child(file_node)
-        print("Loaded: index.md")
+        print('Loaded: index.md')
 
     for chapter_path in config.chapters:
         clean_path = os.path.normpath(chapter_path)
@@ -120,7 +121,7 @@ def build_site_tree(config: SiteConfig, content_root: str) -> DirNode:
 
         current_node = root
 
-        accumulated_path = ""
+        accumulated_path = ''
         for dir_name in directories:
             accumulated_path = os.path.join(accumulated_path, dir_name)
 
@@ -138,15 +139,15 @@ def build_site_tree(config: SiteConfig, content_root: str) -> DirNode:
 
         file_node = FileNode(name=filename, path=clean_path, page=page_obj)
         current_node.add_child(file_node)
-        print(f"Loaded: {clean_path}")
+        print(f'Loaded: {clean_path}')
 
     return root
 
 
 def print_tree(node: Node, level: int = 0):
-    indent = "  " * level
-    icon = "📁" if isinstance(node, DirNode) else "📄"
-    print(f"{indent}{icon} {node.name}")
+    indent = '  ' * level
+    icon = '📁' if isinstance(node, DirNode) else '📄'
+    print(f'{indent}{icon} {node.name}')
 
     if isinstance(node, DirNode):
         for child in node.children:

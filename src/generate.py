@@ -1,5 +1,6 @@
 import os
 import shutil
+
 from parse_content import DirNode, FileNode
 
 LAYOUT = """<!DOCTYPE html>
@@ -75,35 +76,33 @@ INDEX_LAYOUT = """<!DOCTYPE html>
 
 
 def render_nav_tree(node, current_page_path):
-    html = ""
+    html = ''
 
     if isinstance(node, DirNode):
-        if node.name != "root":
-            html += f"<li><strong>{node.name.capitalize()}</strong></li>"
+        if node.name != 'root':
+            html += f'<li><strong>{node.name.capitalize()}</strong></li>'
 
         if node.children:
-            html += "<ul>"
+            html += '<ul>'
             for child in node.children:
                 html += render_nav_tree(child, current_page_path)
-            html += "</ul>"
+            html += '</ul>'
 
     elif isinstance(node, FileNode):
-        target_html = node.path.replace(".md", ".html")
+        target_html = node.path.replace('.md', '.html')
         current_dir = os.path.dirname(current_page_path)
 
-        rel_link = os.path.relpath(target_html, current_dir).replace("\\", "/")
+        rel_link = os.path.relpath(target_html, current_dir).replace('\\', '/')
 
-        is_active = "class='active'" if node.path == current_page_path else ""
+        is_active = "class='active'" if node.path == current_page_path else ''
 
-        title = node.page.meta.get(
-            "title", node.name.replace(".md", "").replace("-", " ").title()
-        )
+        title = node.page.meta.get('title', node.name.replace('.md', '').replace('-', ' ').title())
         html += f"<li><a href='{rel_link}' {is_active}>{title}</a></li>"
 
     return html
 
 
-def process_node(node, output_root, site_root, current_path=""):
+def process_node(node, output_root, site_root, current_path=''):
     if isinstance(node, DirNode):
         if node.path:
             os.makedirs(os.path.join(output_root, node.path), exist_ok=True)
@@ -111,19 +110,19 @@ def process_node(node, output_root, site_root, current_path=""):
             process_node(child, output_root, site_root)
 
     elif isinstance(node, FileNode):
-        output_file = os.path.join(output_root, node.path.replace(".md", ".html"))
+        output_file = os.path.join(output_root, node.path.replace('.md', '.html'))
         os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
-        depth = node.path.count(os.sep) + node.path.count("/")
-        css_relative_path = "../" * depth + "base.css"
+        depth = node.path.count(os.sep) + node.path.count('/')
+        css_relative_path = '../' * depth + 'base.css'
 
         nav_html = render_nav_tree(site_root, node.path)
 
         title = node.page.meta.get(
-            "title", os.path.splitext(node.name)[0].replace("-", " ").title()
+            'title', os.path.splitext(node.name)[0].replace('-', ' ').title()
         )
 
-        if node.path == "index.md":
+        if node.path == 'index.md':
             html = INDEX_LAYOUT.format(
                 title=title,
                 content=node.page.render(),
@@ -137,10 +136,10 @@ def process_node(node, output_root, site_root, current_path=""):
                 nav_tree=nav_html,
             )
 
-        with open(output_file, "w", encoding="utf-8") as f:
+        with open(output_file, 'w', encoding='utf-8') as f:
             f.write(html)
 
-        print(f"written {node.path} -> {output_file}")
+        print(f'written {node.path} -> {output_file}')
 
 
 def write_output(root_node: DirNode, output_path: str) -> None:
@@ -150,5 +149,8 @@ def write_output(root_node: DirNode, output_path: str) -> None:
 
     process_node(root_node, output_path, root_node)
 
-    shutil.copy("static/base.css", os.path.join(output_path, "base.css"))
-    print("copied base.css")
+    if os.path.exists('static/base.css'):
+        shutil.copy('static/base.css', os.path.join(output_path, 'base.css'))
+        print('copied base.css')
+    else:
+        print('Warning: base.css not found in root directory')
