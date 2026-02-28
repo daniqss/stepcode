@@ -1,4 +1,4 @@
 {
-  "recommendations": ["charliermarsh.ruff", "astral-sh.ty"],
+  "recommendations": ["charliermarsh.ruff"],
   "unwantedRecommendations": []
 }
