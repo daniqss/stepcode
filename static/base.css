@@ -255,6 +255,12 @@ td {
   line-height: 1.6;
 }
 
+.pseudo-runner-controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 .pseudo-runner button {
   align-self: flex-start;
   background-color: var(--accent-color);
