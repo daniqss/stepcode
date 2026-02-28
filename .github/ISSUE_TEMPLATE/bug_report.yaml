@@ -1,0 +1,37 @@
+name: "Bug Report"
+description: Something is not working as expected
+title: "[Bug]: "
+labels: ["bug"]
+
+body:
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. I have this pseudocode: ...
+        2. I run `stepcode build`
+        3. This happens: ...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Which part is affected?
+      options:
+        - "Interpreter — step-by-step execution"
+        - "Generator — static site output"
+        - "Parser — pseudocode syntax"
+        - "CLI"
+        - "UI / Themes"
+        - "Not sure"
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
