@@ -17,7 +17,6 @@ LAYOUT = """<!DOCTYPE html>
         {nav_tree}
     </nav>
     <main>
-        <h1>{title}</h1>
         {content}
     </main>
 </body>
