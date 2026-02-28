@@ -22,4 +22,4 @@ The interpreter will parse these blocks and provide the interactive stepping fun
 
 ## Building the Book
 
-Instructions on how to build and host your book can be found in the [README.md](https://github.com/javier-v/stepcode) of the repository.
+Instructions on how to build and host your book can be found in the [README.md](https://github.com/daniqss/stepcode) of the repository.
