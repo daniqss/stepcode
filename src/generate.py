@@ -18,6 +18,7 @@ LAYOUT = """<!DOCTYPE html>
     </nav>
     <main>
         {content}
+        {navigation}
     </main>
 </body>
 </html>"""
@@ -77,9 +78,20 @@ INDEX_LAYOUT = """<!DOCTYPE html>
 <body>
     <main class="landing">
         {content}
+        {navigation}
     </main>
 </body>
 </html>"""
+
+
+def flatten_tree(node):
+    files = []
+    if isinstance(node, FileNode):
+        files.append(node)
+    elif isinstance(node, DirNode):
+        for child in node.children:
+            files.extend(flatten_tree(child))
+    return files
 
 
 def render_nav_tree(node, current_page_path):
@@ -109,12 +121,33 @@ def render_nav_tree(node, current_page_path):
     return html
 
 
-def process_node(node, output_root, site_root, current_path=''):
+def render_navigation(prev_node, next_node, current_page_path):
+    html = '<div class="navigation">'
+
+    if prev_node:
+        target_html = prev_node.path.replace('.md', '.html')
+        current_dir = os.path.dirname(current_page_path)
+        rel_link = os.path.relpath(target_html, current_dir).replace('\\', '/')
+        title = prev_node.page.meta.get('title', prev_node.name.replace('.md', '').replace('-', ' ').title())
+        html += f'<a href="{rel_link}" class="prev">← {title}</a>'
+
+    if next_node:
+        target_html = next_node.path.replace('.md', '.html')
+        current_dir = os.path.dirname(current_page_path)
+        rel_link = os.path.relpath(target_html, current_dir).replace('\\', '/')
+        title = next_node.page.meta.get('title', next_node.name.replace('.md', '').replace('-', ' ').title())
+        html += f'<a href="{rel_link}" class="next">{title} →</a>'
+
+    html += '</div>'
+    return html
+
+
+def process_node(node, output_root, site_root, flat_tree, current_path=''):
     if isinstance(node, DirNode):
         if node.path:
             os.makedirs(os.path.join(output_root, node.path), exist_ok=True)
         for child in node.children:
-            process_node(child, output_root, site_root)
+            process_node(child, output_root, site_root, flat_tree)
 
     elif isinstance(node, FileNode):
         output_file = os.path.join(output_root, node.path.replace('.md', '.html'))
@@ -125,6 +158,19 @@ def process_node(node, output_root, site_root, current_path=''):
 
         nav_html = render_nav_tree(site_root, node.path)
 
+        # Calculate prev/next
+        prev_node = None
+        next_node = None
+        for i, f_node in enumerate(flat_tree):
+            if f_node.path == node.path:
+                if i > 0:
+                    prev_node = flat_tree[i - 1]
+                if i < len(flat_tree) - 1:
+                    next_node = flat_tree[i + 1]
+                break
+
+        navigation_html = render_navigation(prev_node, next_node, node.path)
+
         title = node.page.meta.get(
             'title', os.path.splitext(node.name)[0].replace('-', ' ').title()
         )
@@ -134,6 +180,7 @@ def process_node(node, output_root, site_root, current_path=''):
                 title=title,
                 content=node.page.render(),
                 css_path=css_relative_path,
+                navigation=navigation_html,
             )
         else:
             html = LAYOUT.format(
@@ -141,6 +188,7 @@ def process_node(node, output_root, site_root, current_path=''):
                 content=node.page.render(),
                 css_path=css_relative_path,
                 nav_tree=nav_html,
+                navigation=navigation_html,
             )
 
         with open(output_file, 'w', encoding='utf-8') as f:
@@ -154,7 +202,8 @@ def write_output(root_node: DirNode, output_path: str) -> None:
         shutil.rmtree(output_path)
     os.makedirs(output_path)
 
-    process_node(root_node, output_path, root_node)
+    flat_tree = flatten_tree(root_node)
+    process_node(root_node, output_path, root_node, flat_tree)
 
     if os.path.exists('static/base.css'):
         shutil.copy('static/base.css', os.path.join(output_path, 'base.css'))

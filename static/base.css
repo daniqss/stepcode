@@ -208,12 +208,28 @@ td {
   border-bottom: 1px solid var(--quote-border);
 }
 
-tr:nth-child(even) {
-  background-color: rgba(0, 0, 0, 0.02);
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--quote-border);
 }
 
-@media (prefers-color-scheme: dark) {
-  tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.02);
-  }
+.navigation a {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--accent-color);
+  border-radius: 6px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.navigation a:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+.navigation .next {
+  margin-left: auto;
 }
