@@ -12,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
       - name: Build site
         env:
           STEPCODE_ENV: production
-        run: | 
+        run: |
           nix develop --command uv run src/main.py docs
 
       - name: Upload artifact
@@ -40,9 +40,9 @@ jobs:
 
   deploy:
     environment:
-        # github action extension gives an error, but this is correct
-        name: github-pages
-        url: ${{ steps.deployment.outputs.page_url }}
+      # github action extension gives an error, but this is correct
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
     steps:

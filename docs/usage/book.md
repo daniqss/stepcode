@@ -1,5 +1,5 @@
 ---
-title: "Create your own book"
+title: 'Create your own book'
 ---
 
 # {{title}}

@@ -1,5 +1,5 @@
 ---
-title: "How to use stepcode"
+title: 'How to use stepcode'
 ---
 
 # {{title}}

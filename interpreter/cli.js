@@ -81,9 +81,9 @@ try {
         const vars =
           state && state.variables
             ? Object.entries(state.variables)
-              .filter(([k]) => k !== '<return>')
-              .map(([k, v]) => `${k}: ${JSON.stringify(v)}`)
-              .join(', ')
+                .filter(([k]) => k !== '<return>')
+                .map(([k, v]) => `${k}: ${JSON.stringify(v)}`)
+                .join(', ')
             : '';
         console.log(`>>>\t\t\t${vars ? `[ ${vars} ]` : ''}`);
         break;
