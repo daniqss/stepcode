@@ -19,6 +19,10 @@
 
           nodejs
         ];
+
+        shellHook = ''
+          uv sync
+        '';
       };
     });
   };
