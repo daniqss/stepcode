@@ -1,8 +1,12 @@
 # Functions
 
-Define a function as follows:
+Functions are reusable blocks of code that perform specific tasks. They help organize complex algorithms into smaller, more manageable parts.
 
-```pseudocode
+## Defining a Function
+
+Use the `function` and `end function` keywords to define your logic. Here is an implementation of the **Insertion Sort** algorithm:
+
+```stepcode
 function insertion_sort(arr)
     for i = 2 to len(arr) do
         key := arr[i]
@@ -16,12 +20,15 @@ function insertion_sort(arr)
     return arr
 end function
 
+// Using the function
 arr := insertion_sort([5, 2, 4, 6, 1, 3])
 ```
 
-Recursion is allowed:
+## Recursion
 
-```pseudocode
+**stepcode** supports recursive function calls, where a function calls itself to solve smaller instances of the same problem. A classic example is the **Factorial** function:
+
+```stepcode
 function factorial(n)
     if n <= 1 then
         return 1
@@ -30,5 +37,5 @@ function factorial(n)
     end if
 end function
 
-result := factorial(5)
+result := factorial(5)   // result will be 120
 ```

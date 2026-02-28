@@ -1,8 +1,10 @@
 # Conditionals
 
-To implement conditional use the following syntax:
+## Basic If Statement
 
-```pseudocode
+The basic `if` statement uses the `then` and `end if` keywords:
+
+```stepcode
 x := -2
 
 if x < 0 then
@@ -10,9 +12,11 @@ if x < 0 then
 end if
 ```
 
-You can also add an else clause:
+## Adding an Else Clause
 
-```
+You can provide an alternative branch using `else`:
+
+```stepcode
 x := 2
 
 if x < 0 then
@@ -22,9 +26,11 @@ else
 end if
 ```
 
-or even chain multiple conditions:
+## Chaining Multiple Conditions
 
-```pseudocode
+To check multiple conditions, use the `else if` syntax:
+
+```stepcode
 x := 4
 
 if x < 0 then

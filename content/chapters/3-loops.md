@@ -1,10 +1,12 @@
 # Loops
 
-There are multiple definitions for loops:
+There are several loop constructs provided:
 
 ## While
 
-```pseudocode
+Executes the loop as long as the condition is `true`.
+
+```stepcode
 x := 0
 n := 1
 
@@ -16,35 +18,37 @@ end while
 
 ## Until
 
-```pseudocode
+Executes the loop until the condition becomes `true`.
+
+```stepcode
 x := 0
 n := 1
 
 until n == 4 do
     x := x + n
     n := n + 1
-end while
+end until
 ```
 
 ## Repeat-While
 
-Behaves `while` but gets executed at least once.
+Executes the block at least once, then repeats as long as the condition is `true`.
 
-```pseudocode
+```stepcode
 x := 0
 n := 1
 
 repeat
     x := x + n
     n := n + 1
-while n := n < 4
+while n < 4
 ```
 
 ## Repeat-Until
 
-Behaves like `until` but gets executed at least once.
+Executes the block at least once, then repeats until the condition becomes `true`.
 
-```pseudocode
+```stepcode
 x := 0
 n := 1
 
@@ -54,9 +58,11 @@ repeat
 until n == 4
 ```
 
-## For
+## For Loop
 
-```pseudocode
+Iterates through a range of values.
+
+```stepcode
 x := 0
 
 for i = 1 to 3 do
@@ -64,9 +70,11 @@ for i = 1 to 3 do
 end for
 ```
 
-`for` loops can also be decreasing:
+### Decreasing For Loop
 
-```pseudocode
+Use `downto` to count backwards:
+
+```stepcode
 x := 0
 
 for i = 3 downto 1 do
@@ -74,23 +82,25 @@ for i = 3 downto 1 do
 end for
 ```
 
-# Break
+# Loop Control Statements
 
-Use the `break` keyword for exiting any loop:
+## Break
 
-```pseudocode
-for i = 0 to 10 do
-    if i == 5 do
+Use the `break` keyword to exit any loop immediately:
+
+```stepcode
+for i = 1 to 10 do
+    if i == 5 then
         break
     end if
 end for
 ```
 
-# Continue
+## Continue
 
-Use the `continue` keyword for skipping an iteration of a loop
+Use the `continue` keyword to skip the current iteration and move to the next one:
 
-```pseudocode
+```stepcode
 x := 0
 
 for i = 1 to 4 do
