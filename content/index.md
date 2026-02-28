@@ -1,11 +1,9 @@
-# stepcode
+---
+title: Welcome to Stepcode
+---
 
-## introduction
+# {{title}}
 
-stepcode is a tool for generating static books with support for step-by-step pseudocode execution
+The interactive way to learn coding through step-by-step pseudocode execution.
 
-## chapters
-
-now programming concepts
-
-[variables](./chapters/1.variables.html)
+[Start Learning](intro/welcome.html)

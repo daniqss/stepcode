@@ -16,7 +16,6 @@
           python314
           uv
           ruff
-          ty
         ];
       };
     });
