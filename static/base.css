@@ -298,6 +298,35 @@ td {
   margin: 0;
 }
 
+footer {
+  margin-top: 4rem;
+  padding: 1rem 0;
+  border-top: 1px solid #ddd;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.footer-left code {
+  background: transparent;
+  font-weight: 600;
+}
+
+.footer-right a {
+  color: inherit;
+  display: flex;
+  align-items: center;
+  border-bottom: none;
+}
+
+.footer-right a:hover {
+  opacity: 0.7;
+}
+
 @media (prefers-color-scheme: dark) {
   .pseudo-runner .indicator {
     background-color: rgba(255, 133, 127, 0.15);
