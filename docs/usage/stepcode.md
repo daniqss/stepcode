@@ -1,4 +1,8 @@
-# How to use stepcode
+---
+title: "How to use stepcode"
+---
+
+# {{title}}
 
 Creating a static book with **stepcode** is as simple as writing standard Markdown.
 

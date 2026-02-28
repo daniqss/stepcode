@@ -1,0 +1,12 @@
+[book]
+name = "Learn how to code, with step-by-step pseudocode execution"
+author = "stepcode"
+
+chapters = [
+    "stepcode/variables.md",
+    "stepcode/conditionals.md",
+    "stepcode/loops.md",
+    "stepcode/functions.md",
+    
+    "usage/usage.md",
+]
