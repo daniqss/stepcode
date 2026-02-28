@@ -8,5 +8,8 @@ chapters = [
     "stepcode/loops.md",
     "stepcode/functions.md",
     
-    "usage/usage.md",
+    "usage/stepcode.md",
+    "usage/book.md",
+
+    "contribute/build.md"
 ]
