@@ -262,7 +262,6 @@ td {
 }
 
 .pseudo-runner button {
-  align-self: flex-start;
   background-color: var(--accent-color);
   color: white;
   border: none;
@@ -276,6 +275,7 @@ td {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.9rem;
+  line-height: 1.2;
 }
 
 .pseudo-runner button:hover {
