@@ -37,6 +37,7 @@ Please confirm that you have followed the project's quality standards:
 - [ ] Existing tests pass
 - [ ] Verified generated HTML output
 - [ ] Verified step-by-step debugger behavior
+- [ ] N/A
 
 Explain briefly what was tested.
 
@@ -57,3 +58,4 @@ Anything reviewers should know?
 Performance implications?
 Design decisions?
 Future follow-ups?
+If none, please write "N/A".
