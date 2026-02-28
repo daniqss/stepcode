@@ -1,7 +1,7 @@
-name: "Develop Fix"
+name: 'Develop Fix'
 description: For contributors — bugs found during development
-title: "[Dev Bug]: "
-labels: ["bug", "dev"]
+title: '[Dev Bug]: '
+labels: ['bug', 'dev']
 
 body:
   - type: markdown
@@ -13,7 +13,7 @@ body:
     id: reproduce
     attributes:
       label: How to reproduce
-      placeholder: "Failing test, minimal script, link to CI run..."
+      placeholder: 'Failing test, minimal script, link to CI run...'
       render: shell
     validations:
       required: true
@@ -23,11 +23,11 @@ body:
     attributes:
       label: Affected module
       options:
-        - "Interpreter core"
-        - "Parser / AST"
-        - "Generator"
-        - "CLI"
-        - "Test suite / CI"
+        - 'Interpreter core'
+        - 'Parser / AST'
+        - 'Generator'
+        - 'CLI'
+        - 'Test suite / CI'
     validations:
       required: true
 
@@ -35,10 +35,10 @@ body:
     id: commit
     attributes:
       label: Commit or branch where it appeared
-      placeholder: "abc1234 / feat/some-feature"
+      placeholder: 'abc1234 / feat/some-feature'
 
   - type: textarea
     id: notes
     attributes:
       label: What you already know about the bug
-      placeholder: "Stack trace, hypothesis, relevant files..."
+      placeholder: 'Stack trace, hypothesis, relevant files...'

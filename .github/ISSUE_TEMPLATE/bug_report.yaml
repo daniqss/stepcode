@@ -1,7 +1,7 @@
-name: "Bug Report"
+name: 'Bug Report'
 description: Something is not working as expected
-title: "[Bug]: "
-labels: ["bug"]
+title: '[Bug]: '
+labels: ['bug']
 
 body:
   - type: textarea
@@ -20,12 +20,12 @@ body:
     attributes:
       label: Which part is affected?
       options:
-        - "Interpreter — step-by-step execution"
-        - "Generator — static site output"
-        - "Parser — pseudocode syntax"
-        - "CLI"
-        - "UI / Themes"
-        - "Not sure"
+        - 'Interpreter — step-by-step execution'
+        - 'Generator — static site output'
+        - 'Parser — pseudocode syntax'
+        - 'CLI'
+        - 'UI / Themes'
+        - 'Not sure'
     validations:
       required: true
 
