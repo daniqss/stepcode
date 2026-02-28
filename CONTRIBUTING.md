@@ -36,84 +36,55 @@ Feature requests should follow our issue template `feature_request.yaml` and inc
 
 Please keep the scope aligned with the project's goals.
 
-## 🛠 Development Setup
+## Development Workflow
 
-### 1. Fork the repository
+To contribute to **stepcode**, please follow this general workflow to ensure a smooth review process.
 
-### 2. Clone your fork
+### 1. Environment Setup
+Before starting, ensure you have followed the installation instructions in the [README.md](./README.md). This includes setting up Python with `uv` and installing the necessary Node.js dependencies.
 
-```bash
-git clone git@github.com:daniqss/stepcode.git
-cd project-name
-```
+If you use Nix, you can simply run `nix develop` or use `direnv` to automatically enter the development shell with all tools pre-installed.
 
-### 3. Install dependencies
-
-```bash
-#TODO
-```
-
-### 4. Run in development mode
+### 2. Create a Branch
+Always create a new branch for your work. Use a descriptive name that follows our naming conventions:
+- `feat/your-feature-name`
+- `fix/your-bug-fix`
+- `docs/your-doc-change`
 
 ```bash
-#TODO
+git checkout -b feat/short-description
 ```
 
-### 5. Build the project
+### 3. Implementation and Local Testing
+While working on your changes, make sure to:
+- **Test the interpreter**: If you modify the core logic, run the tests in the `interpreter` directory.
+  ```bash
+  cd interpreter && npm test
+  ```
+- **Build the book**: Verify that the site generator still works as expected.
+  ```bash
+  uv run src/main.py content
+  ```
+
+### 4. Code Quality
+Before committing, you must ensure your code follows the project's style guidelines. We use `eslint` and `prettier` for JavaScript, and `ruff` for Python.
 
 ```bash
-#TODO
+# JavaScript linting and formatting
+npm run lint
+npm run format
+
+# Python linting and formatting
+ruff check --fix .
+ruff format .
 ```
 
-## Project Architecture Overview
+### 5. Submit a Pull Request
+Once your changes are ready and verified:
+1. Push your branch to your fork.
+2. Open a Pull Request against the `main` branch of the original repository.
+3. Fill out the PR template completely so we understand the context of your changes.
 
-The project is divided into clearly separated domains:
-
-```bash
-stepcode
-├── CODE_OF_CONDUCT.md
-├── content
-│   ├── chapters
-│   │   ├── 1-variables.md
-│   │   ├── 2-conditionals.md
-│   │   ├── 3-loops.md
-│   │   ├── 4-functions.md
-│   │   ├── 5-usage.md
-│   │   ├── conditionals.md
-│   │   ├── functions.md
-│   │   ├── loops.md
-│   │   ├── usage.md
-│   │   └── variables.md
-│   ├── index.md
-│   └── stepcode.toml
-├── CONTRIBUTING.md
-├── eslint.config.js
-├── flake.lock
-├── flake.nix
-├── interpreter
-│   ├── cli.js
-│   ├── package.json
-│   └── tests
-│       ├── interpreter.test.js
-│       └── parser.test.js
-├── LICENSE.txt
-├── package.json
-├── package-lock.json
-├── pyproject.toml
-├── README.md
-├── src
-│   ├── generate.py
-│   ├── main.py
-│   └── parse_content.py
-├── static
-│   ├── base.css
-│   └── js
-│       ├── index.js
-│       ├── interpreter.js
-│       ├── lexer.js
-│       └── parser.js
-└── uv.lock
-```
 
 ## Commit Guidelines
 
@@ -150,8 +121,6 @@ PR descriptions should clearly explain:
 Large PRs without explanation may be rejected.
 
 ## Testing Guidelines
-
-If you modify: #TODO
 
 All new features should include tests when possible.
 
