@@ -15,21 +15,18 @@ Please make sure to:
 
 ## Reporting Bugs
 
-When opening a bug report, please include:
+As a user, you must follow our issue template `bug_report.yaml` when reporting bugs. This helps us understand and reproduce the issue more effectively.
 
-- A clear description of the issue
-- Steps to reproduce
-- Expected behavior
-- Actual behavior
-- Environment (Node version, OS, browser if relevant)
-- Screenshots if UI-related
-
-Use a minimal reproduction whenever possible.
+When reporting a bug, please include:
+- A clear and descriptive title
+- A detailed description of the issue
+- Steps to reproduce the bug
+- Expected and actual behavior
+- Any relevant screenshots or logs if needed
 
 ## Suggesting Features
 
-Feature requests should include:
-
+Feature requests should follow our issue template `feature_request.yaml` and include:
 - Clear explanation of the problem
 - Proposed solution
 - Alternatives considered (if any)

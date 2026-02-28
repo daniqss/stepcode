@@ -23,7 +23,6 @@ LAYOUT = """<!DOCTYPE html>
 </body>
 </html>"""
 
-# En src/generate.py
 
 INDEX_LAYOUT = """<!DOCTYPE html>
 <html lang="en">

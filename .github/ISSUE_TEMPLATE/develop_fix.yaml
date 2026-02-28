@@ -1,0 +1,44 @@
+name: "Develop Fix"
+description: For contributors — bugs found during development
+title: "[Dev Bug]: "
+labels: ["bug", "dev"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > Are you a user? Use the [Bug Report](?template=bug_report.yml) template instead.
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce
+      placeholder: "Failing test, minimal script, link to CI run..."
+      render: shell
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected module
+      options:
+        - "Interpreter core"
+        - "Parser / AST"
+        - "Generator"
+        - "CLI"
+        - "Test suite / CI"
+    validations:
+      required: true
+
+  - type: input
+    id: commit
+    attributes:
+      label: Commit or branch where it appeared
+      placeholder: "abc1234 / feat/some-feature"
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: What you already know about the bug
+      placeholder: "Stack trace, hypothesis, relevant files..."

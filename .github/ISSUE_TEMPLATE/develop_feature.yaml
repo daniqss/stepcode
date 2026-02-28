@@ -1,0 +1,40 @@
+name: "Develop Feature"
+description: For contributors — technical proposals or internal changes
+title: "[Dev Feature]: "
+labels: ["enhancement", "dev"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > Are you a user? Use the [Feature Request](?template=feature_request.yml) template instead.
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Technical motivation
+      placeholder: "This change solves... / the current problem is..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected module
+      options:
+        - "Interpreter core"
+        - "Parser / AST"
+        - "Generator"
+        - "CLI"
+        - "Test suite / CI"
+        - "Multiple"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Implementation proposal
+      placeholder: "API design, data structures, internal pseudocode..."
+    validations:
+      required: true
