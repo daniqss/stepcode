@@ -69,7 +69,51 @@ cd project-name
 
 The project is divided into clearly separated domains:
 
-#TODO
+```bash
+stepcode
+├── CODE_OF_CONDUCT.md
+├── content
+│   ├── chapters
+│   │   ├── 1-variables.md
+│   │   ├── 2-conditionals.md
+│   │   ├── 3-loops.md
+│   │   ├── 4-functions.md
+│   │   ├── 5-usage.md
+│   │   ├── conditionals.md
+│   │   ├── functions.md
+│   │   ├── loops.md
+│   │   ├── usage.md
+│   │   └── variables.md
+│   ├── index.md
+│   └── stepcode.toml
+├── CONTRIBUTING.md
+├── eslint.config.js
+├── flake.lock
+├── flake.nix
+├── interpreter
+│   ├── cli.js
+│   ├── package.json
+│   └── tests
+│       ├── interpreter.test.js
+│       └── parser.test.js
+├── LICENSE.txt
+├── package.json
+├── package-lock.json
+├── pyproject.toml
+├── README.md
+├── src
+│   ├── generate.py
+│   ├── main.py
+│   └── parse_content.py
+├── static
+│   ├── base.css
+│   └── js
+│       ├── index.js
+│       ├── interpreter.js
+│       ├── lexer.js
+│       └── parser.js
+└── uv.lock
+```
 
 ## Commit Guidelines
 
@@ -83,6 +127,7 @@ Allowed types:
 - `docs:` Documentation only changes
 - `test:` Adding or updating tests
 - `chore:` Maintenance tasks
+- `style:` Style changes in the code
 
 Clear and meaningful commit messages are required.
 You may be asked to rebase unclear commits.

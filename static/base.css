@@ -233,3 +233,68 @@ td {
 .navigation .next {
   margin-left: auto;
 }
+
+/* Pseudo-runner styles */
+.pseudo-runner {
+  background-color: var(--code-bg);
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border: 1px solid var(--quote-border);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pseudo-runner pre {
+  margin-bottom: 0;
+  padding: 0;
+  background-color: transparent;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.pseudo-runner button {
+  align-self: flex-start;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.pseudo-runner button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.pseudo-runner button:active {
+  transform: translateY(0);
+}
+
+.pseudo-runner .indicator {
+  display: block;
+  color: var(--accent-color);
+  font-weight: bold;
+  font-family: 'Consolas', 'Monaco', monospace;
+  background-color: rgba(217, 70, 62, 0.1); /* Slight accent background */
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  margin: 0.2rem 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .pseudo-runner .indicator {
+    background-color: rgba(255, 133, 127, 0.15);
+  }
+}

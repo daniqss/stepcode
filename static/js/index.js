@@ -34,11 +34,11 @@ document.querySelectorAll('pre').forEach((pre) => {
   wrapper.appendChild(btn);
 
   function formatVars(variables) {
-    const vars = Object.entries(variables)
+    const vars = Object.entries(variables || {})
       .filter(([k]) => k !== '<return>')
       .map(([k, v]) => `${k}: ${JSON.stringify(v)}`)
       .join(', ');
-    return vars ? `[ ${vars} ]` : '';
+    return vars ? `[ ${vars} ]` : '[]';
   }
 
   function render() {
@@ -51,7 +51,7 @@ document.querySelectorAll('pre').forEach((pre) => {
 
       if (isCurrent && !isReturning) {
         const vars = formatVars(state.variables);
-        rows.push(`<span class="indicator">&gt;&gt;&gt;\t\t\t${vars}</span>`);
+        rows.push(`<span class="indicator">&gt;&gt;&gt; ${vars}</span>`);
       }
 
       rows.push(`<span>${lines[i]}</span>`);
@@ -59,7 +59,7 @@ document.querySelectorAll('pre').forEach((pre) => {
       if (isCurrent && isReturning) {
         const returnVal = JSON.stringify(state.variables['<return>']);
         const vars = formatVars(state.variables);
-        rows.push(`<span class="indicator">&gt;&gt;&gt; [ RETURN: ${returnVal} ]\t${vars}</span>`);
+        rows.push(`<span class="indicator">&gt;&gt;&gt; [ RETURN: ${returnVal} ] ${vars}</span>`);
       }
     }
 
@@ -67,7 +67,7 @@ document.querySelectorAll('pre').forEach((pre) => {
       // Do nothing
     } else if (state.nextLine === null) {
       const vars = formatVars(state.variables);
-      rows.push(`<span class="indicator">&gt;&gt;&gt;\t\t\t${vars}</span>`);
+      rows.push(`<span class="indicator">&gt;&gt;&gt; ${vars}</span>`);
       btn.textContent = '↺ Reiniciar';
       running = false;
     }
