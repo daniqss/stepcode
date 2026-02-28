@@ -1,3 +1,21 @@
+/*
+ * stepcode: specialized tool for generating static books with interactive pseudocode.
+ * Copyright (C) 2026  stepcode authors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 :root {
   --bg-color: #fdfbf7;
   --text-color: #333333;
@@ -66,7 +84,7 @@ nav ul {
   padding-left: 1rem;
 }
 
-nav > ul {
+nav>ul {
   padding-left: 0;
 }
 
@@ -121,6 +139,7 @@ h1 {
 h2 {
   font-size: 1.8rem;
 }
+
 h3 {
   font-size: 1.4rem;
 }
@@ -131,6 +150,7 @@ a {
   border-bottom: 1px dotted var(--accent-color);
   transition: all 0.2s;
 }
+
 a:hover {
   border-bottom-style: solid;
 }
@@ -146,6 +166,7 @@ ol {
   margin-bottom: 1.5rem;
   padding-left: 1.5rem;
 }
+
 li {
   margin-bottom: 0.5rem;
 }
@@ -173,6 +194,7 @@ pre {
   overflow-x: auto;
   margin-bottom: 1.5rem;
 }
+
 pre code {
   background-color: transparent;
   padding: 0;
@@ -292,7 +314,8 @@ td {
   color: var(--accent-color);
   font-weight: bold;
   font-family: 'Consolas', 'Monaco', monospace;
-  background-color: rgba(217, 70, 62, 0.1); /* Slight accent background */
+  background-color: rgba(217, 70, 62, 0.1);
+  /* Slight accent background */
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
   margin: 0;
