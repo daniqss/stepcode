@@ -86,6 +86,20 @@ INDEX_LAYOUT = """<!DOCTYPE html>
 </html>"""
 
 
+def get_asset_path(current_file_path, asset_target):
+    env = os.environ.get('STEPCODE_ENV', 'development')
+
+    # check for build environment to check for correct static files paths
+    if env == 'production':
+        source_dir = os.path.dirname(current_file_path)
+        rel_path = os.path.relpath(asset_target, source_dir)
+        return rel_path.replace('\\', '/')
+    else:
+        source_dir = os.path.dirname(current_file_path)
+        rel_path = os.path.relpath(asset_target, source_dir)
+        return rel_path.replace('\\', '/')
+
+
 def flatten_tree(node):
     files = []
     if isinstance(node, FileNode):
@@ -130,14 +144,19 @@ def render_navigation(prev_node, next_node, current_page_path):
         target_html = prev_node.path.replace('.md', '.html')
         current_dir = os.path.dirname(current_page_path)
         rel_link = os.path.relpath(target_html, current_dir).replace('\\', '/')
-        title = prev_node.page.meta.get('title', prev_node.name.replace('.md', '').replace('-', ' ').title())
+        title = prev_node.page.meta.get(
+            'title', prev_node.name.replace('.md', '').replace('-', ' ').title()
+        )
         html += f'<a href="{rel_link}" class="prev">← {title}</a>'
 
     if next_node:
         target_html = next_node.path.replace('.md', '.html')
         current_dir = os.path.dirname(current_page_path)
         rel_link = os.path.relpath(target_html, current_dir).replace('\\', '/')
-        title = next_node.page.meta.get('title', next_node.name.replace('.md', '').replace('-', ' ').title())
+        title = next_node.page.meta.get(
+            'title', next_node.name.replace('.md', '').replace('-', ' ').title()
+        )
+
         html += f'<a href="{rel_link}" class="next">{title} →</a>'
 
     html += '</div>'
@@ -155,9 +174,8 @@ def process_node(node, output_root, site_root, flat_tree, current_path=''):
         output_file = os.path.join(output_root, node.path.replace('.md', '.html'))
         os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
-        depth = node.path.count(os.sep) + node.path.count('/')
-        css_relative_path = '../' * depth + 'static/base.css'
-        js_relative_path = '../' * depth + 'static/js/index.js'
+        css_relative_path = get_asset_path(node.path, 'static/base.css')
+        js_relative_path = get_asset_path(node.path, 'static/js/index.js')
 
         nav_html = render_nav_tree(site_root, node.path)
 

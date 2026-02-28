@@ -28,6 +28,8 @@ jobs:
           nix_path: nixpkgs=channel:nixos-25.11
 
       - name: Build site
+        env:
+          STEPCODE_ENV: production
         run: | 
           nix develop --command uv run src/main.py docs
 

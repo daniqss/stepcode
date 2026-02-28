@@ -1,7 +1,9 @@
 {
   "editor.inlayHints.enabled": "off",
-  "python.linting.ruffEnabled": true,
-  "python.linting.enabled": true,
-  "python.formatting.provider": "none",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true
+  }
 }
