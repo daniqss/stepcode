@@ -3,14 +3,19 @@ name = "Learn how to code, with step-by-step pseudocode execution"
 author = "stepcode"
 
 chapters = [
-    "intro/welcome.md",
-    # "intro/how-stepcode-works.md",
+    # "intro/welcome.md",
+    # # "intro/how-stepcode-works.md",
 
-    "basics/variables.md",
-    # "basics/conditionals.md",
-    # "basics/loops/while.md",
-    # "basics/loops/for.md",
+    # "basics/variables.md",
+    # # "basics/conditionals.md",
+    # # "basics/loops/while.md",
+    # # "basics/loops/for.md",
 
-    # "advanced/functions.md",
-    # "advanced/recursion.md",
+    # # "advanced/functions.md",
+    # # "advanced/recursion.md",
+    "chapters/variables.md",
+    "chapters/conditionals.md",
+    "chapters/loops.md",
+    "chapters/functions.md",
+    "chapters/usage.md",
 ]
