@@ -63,7 +63,16 @@ INDEX_LAYOUT = """<!DOCTYPE html>
             opacity: 0.9;
             border-bottom: none;
         }}
-    </style>
+        main.landing ol, main.landing ul {{
+            text-align: left;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }}
+        main.landing li {{
+            margin-bottom: 0.8rem;
+        }}
+        </style>
 </head>
 <body>
     <main class="landing">
