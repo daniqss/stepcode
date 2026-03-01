@@ -11,7 +11,8 @@ Please make sure to:
 
 - Read the README carefully
 - Check existing issues to avoid duplicates
-- Follow the Code of Conduct
+- Follow the [Code of Conduct](./CODE_OF_CONDUCT.md)
+- Review our [Governance model](./GOVERNANCE.md)
 
 ## Reporting Bugs
 
