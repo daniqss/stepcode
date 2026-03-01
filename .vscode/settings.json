@@ -1,9 +1,0 @@
-{
-  "editor.inlayHints.enabled": "off",
-  "editor.formatOnSave": true,
-
-  "[python]": {
-    "editor.defaultFormatter": "charliermarsh.ruff",
-    "editor.formatOnSave": true
-  }
-}

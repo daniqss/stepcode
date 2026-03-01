@@ -1,0 +1,10 @@
+[package]
+name = "stepcode"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+pulldown-cmark = "0.13.1"
+serde = { version = "1.0.228", features = ["derive"] }
+serde_yaml = "0.9.34"
+toml = "1.0.3"

@@ -1,5 +1,5 @@
 ---
-title: 'Pseudocode step by step execution in markdown!?'
+title: 'step by step!?'
 ---
 
 # {{title}}

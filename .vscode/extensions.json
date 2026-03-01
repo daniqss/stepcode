@@ -1,4 +1,3 @@
 {
-  "recommendations": ["charliermarsh.ruff"],
-  "unwantedRecommendations": []
+  "recommendations": ["rust-lang.rust-analyzer"]
 }
