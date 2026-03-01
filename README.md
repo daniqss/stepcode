@@ -54,7 +54,7 @@ Learning to code often feels abstract. **stepcode** bridges the gap between stat
 To build the static site from the content directory:
 
 ```bash
-uv run src/main.py content
+uv run src/main.py docs
 ```
 
 The output will be generated in the `dist` directory.
