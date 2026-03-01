@@ -1,5 +1,5 @@
 ---
-title: "Create your own book"
+title: 'Create your own book'
 ---
 
 # {{title}}
@@ -7,6 +7,7 @@ title: "Create your own book"
 Creating a static book with **stepcode** is as simple as writing standard Markdown.
 
 ## Cloning the Repository
+
 As **stepcode** is made in Python, you must clone the repository and install the dependencies to use it. You can do this with the following commands:
 
 ```sh
@@ -22,6 +23,7 @@ uv run src/main.py
 ```
 
 ## Creating Your Book
+
 To create your book, create a folder. There you must have a `stepcode.toml`:
 
 ```toml
@@ -44,7 +46,9 @@ and a index.md in the root of the folder:
 ---
 title: 'My book'
 ---
+
 # {{title}}
+
 Hi
 ```
 
@@ -55,20 +59,22 @@ nix develop .
 ```
 
 Furthermore, a template book is available using:
+
 ```sh
 nix flake new --template github:daniqss/stepcode#book my-book
 ```
-
 
 ## Building the Book
 
 Instructions on how to build and host your book can be found in the [README.md](https://github.com/daniqss/stepcode?tab=readme-ov-file#usage) of the repository.
 
 After using
+
 ```sh
 uv run src/main.py <YOUR_FOLDER>
 ```
 
 ### In Github Pages
+
 If you want to host your book on Github Pages, you can copy our [workflow](https://github.com/daniqss/stepcode/blob/main/.github/workflows/release.yaml)
 If you're using the template, it already contains a workflow that will automatically build and deploy your book to Github Pages on every push to the `main` branch. You can customize it as you wish, but make sure to update the path to the book in the workflow.

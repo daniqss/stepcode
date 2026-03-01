@@ -1,5 +1,5 @@
 ---
-title: "How to use stepcode"
+title: 'How to use stepcode'
 ---
 
 # {{title}}
@@ -17,4 +17,3 @@ result := x + y
 ````
 
 The interpreter will parse these blocks and provide the interactive stepping functionality in the generated static site.
-
