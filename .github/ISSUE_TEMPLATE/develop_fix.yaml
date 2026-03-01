@@ -25,9 +25,11 @@ body:
       options:
         - 'Interpreter core'
         - 'Parser / AST'
+        - 'Runtime / UI'
         - 'Generator'
         - 'CLI'
         - 'Test suite / CI'
+        - 'Multiple'
     validations:
       required: true
 
