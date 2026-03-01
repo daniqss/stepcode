@@ -29,6 +29,7 @@ LAYOUT = """<!DOCTYPE html>
 </head>
 <body>
     <nav>
+        <a href="{index_path}"><h2>Index</h2></a>
         <h3>Table of Contents</h3>
         {nav_tree}
     </nav>
@@ -226,7 +227,8 @@ def process_node(node, output_root, site_root, flat_tree, current_path=''):
         os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
         css_relative_path = get_asset_path(node.path, 'static/base.css')
-        js_relative_path = get_asset_path(node.path, 'static/js/index.js')
+        js_relative_path = get_asset_path(node.path, 'static/index.js')
+        index_relative_path = get_asset_path(node.path, 'index.html')
 
         nav_html = render_nav_tree(site_root, node.path)
 
@@ -262,6 +264,7 @@ def process_node(node, output_root, site_root, flat_tree, current_path=''):
                 content=node.page.render(),
                 css_path=css_relative_path,
                 js_path=js_relative_path,
+                index_path=index_relative_path,
                 nav_tree=nav_html,
                 navigation=navigation_html,
                 FOOTER=FOOTER,
@@ -281,8 +284,24 @@ def write_output(root_node: DirNode, output_path: str) -> None:
     flat_tree = flatten_tree(root_node)
     process_node(root_node, output_path, root_node, flat_tree)
 
+    static_dest = os.path.join(output_path, 'static')
+    os.makedirs(static_dest, exist_ok=True)
+
     if os.path.exists('static'):
-        shutil.copytree('static', os.path.join(output_path, 'static'))
-        print('copied static directory')
+        for filename in ['base.css', 'index.js']:
+            src = os.path.join('static', filename)
+            if os.path.exists(src):
+                shutil.copy2(src, os.path.join(static_dest, filename))
+        print('copied base.css and index.js from static directory')
     else:
         print('Warning: static directory not found in root directory')
+
+    interpreter_static = os.path.join('interpreter', 'static')
+    if os.path.exists(interpreter_static):
+        for filename in os.listdir(interpreter_static):
+            src = os.path.join(interpreter_static, filename)
+            if os.path.isfile(src):
+                shutil.copy2(src, os.path.join(static_dest, filename))
+        print('copied interpreter files from interpreter/static')
+    else:
+        print('Warning: interpreter/static directory not found')
