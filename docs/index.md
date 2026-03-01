@@ -14,8 +14,15 @@ In this example book, we will cover the specification of our pseudocode implemen
 
 Dive into the core building blocks of **stepcode** and learn how to create your own interactive educational content:
 
+### The stepcode Specification
 1. [Variables](./stepcode/variables.html) - Declaration and assignment.
 2. [Conditionals](./stepcode/conditionals.html) - Making decisions with `if` statements.
 3. [Loops](./stepcode/loops.html) - Repeating actions with various loop types.
 4. [Functions](./stepcode/functions.html) - Reusing code with modular blocks.
-5. [Usage](./stepcode/usage.html) - How to use this tool for your own projects.
+
+### How to use stepcode
+1. [Write stepcode](./usage/stepcode.html) - Setting up stepcode on your machine
+2. [Create a book](./usage/book.html) - Building your first stepcode book.
+
+### Contributing and building
+1. [How to build](./build.html) - How to  build the project.
