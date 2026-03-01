@@ -1,8 +1,9 @@
 # stepcode
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Python: 3.14+](https://img.shields.io/badge/python-3.14+-blue.svg)](https://www.python.org/downloads/)
-[![Node: 18+](https://img.shields.io/badge/node-18+-green.svg)](https://nodejs.org/)
+![license](https://img.shields.io/github/license/daniqss/stepcode?style=for-the-badge&labelColor=303446&color=d9463e&logo=gnu&logoColor=ffffff)
+![python](https://img.shields.io/badge/Python-3.14+-d9463e?style=for-the-badge&labelColor=303446&color=d9463e&logo=python&logoColor=ffffff)
+![node](https://img.shields.io/badge/Node-22+-d9463e?style=for-the-badge&labelColor=303446&color=d9463e&logo=node.js&logoColor=ffffff)
+![stars](https://img.shields.io/github/stars/daniqss/stepcode?style=for-the-badge&labelColor=303446&color=d9463e&logo=github&logoColor=ffffff)
 
 ![Example](assets/example.gif)
 
