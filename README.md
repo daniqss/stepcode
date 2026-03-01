@@ -31,9 +31,11 @@ Learning to code often feels abstract. **stepcode** bridges the gap between stat
 ## Installation
 
 ### GitHub Releases
+
 Download the pre-compiled binary for your architecture from the [GitHub Releases](https://github.com/daniqss/stepcode/releases) page.
 
 ### Using Nix
+
 If you are a [Nix](https://nixos.org/) user, you can run **stepcode** directly:
 
 ```sh
@@ -41,6 +43,7 @@ nix run github:daniqss/stepcode -- <YOUR_BOOK_FOLDER>
 ```
 
 ### From Source
+
 You will need the [Rust toolchain](https://rustup.rs/) installed.
 
 ```bash

@@ -11,9 +11,11 @@ Creating a static book with **stepcode** is as simple as writing standard Markdo
 You can get the **stepcode** binary in several ways:
 
 ### GitHub Releases
+
 Download the pre-compiled binary for your architecture from the [GitHub Releases](https://github.com/daniqss/stepcode/releases) page.
 
 ### Using Nix
+
 If you are a [Nix](https://nixos.org/) user, you can run **stepcode** directly without installing it:
 
 ```sh

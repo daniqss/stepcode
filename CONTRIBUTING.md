@@ -164,7 +164,7 @@ cargo clippy --fix
 cargo fmt
 ```
 
-or 
+or
 
 ```bash
 nix fmt

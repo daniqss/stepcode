@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - "v*.*.*"
+      - 'v*.*.*'
 
 jobs:
   build:
@@ -14,13 +14,13 @@ jobs:
         include:
           - os: ubuntu-latest
             target: x86_64-unknown-linux-gnu
-            binary_suffix: ""
+            binary_suffix: ''
           - os: windows-latest
             target: x86_64-pc-windows-msvc
-            binary_suffix: ".exe"
+            binary_suffix: '.exe'
           - os: macos-latest
             target: x86_64-apple-darwin
-            binary_suffix: ""
+            binary_suffix: ''
 
     steps:
       - name: Checkout

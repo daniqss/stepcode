@@ -34,4 +34,4 @@ To try the program without installing it, you can run:
 
 ```sh
 nix run github:daniqss/stepcode -- <YOUR_BOOK_FOLDER>
-``` 
+```
