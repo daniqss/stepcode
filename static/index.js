@@ -64,7 +64,7 @@ document.querySelectorAll('pre').forEach((pre) => {
   controls.appendChild(btn);
 
   const prevBtn = document.createElement('button');
-  prevBtn.textContent = '⏮ Previous';
+  prevBtn.textContent = '⬆ Previous';
   prevBtn.style.display = 'none';
   controls.appendChild(prevBtn);
 
@@ -130,7 +130,7 @@ document.querySelectorAll('pre').forEach((pre) => {
       btn.textContent = '↺ Restart';
       // running remains true, waiting for user to restart or edit
     } else {
-      btn.textContent = '⏭ Next';
+      btn.textContent = '⬇ Next';
     }
 
     prevBtn.style.display = history.length > 0 ? 'flex' : 'none';
