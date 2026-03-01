@@ -1,5 +1,6 @@
 [package]
 name = "stepcode"
+description = "specialized tool for generating static books with interactive pseudocode step-by-step execution"
 version = "0.1.0"
 edition = "2024"
 

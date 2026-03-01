@@ -398,33 +398,17 @@ pub fn write_output(root_node: &DirNode, output_path: &str, base_path: &str) {
         has_user_css,
     );
 
-    let base_static_dir = Path::new("static");
-    if base_static_dir.exists() {
-        for filename in ["base.css", "index.js"] {
-            let src = base_static_dir.join(filename);
-            if src.exists() {
-                let _ = fs::copy(&src, static_dest.join(filename));
-            }
-        }
-        println!("copied base.css and index.js from static directory");
-    } else {
-        println!("Warning: static directory not found in root directory");
-    }
+    let base_css = include_str!("../static/base.css");
+    let index_js = include_str!("../static/index.js");
+    let _ = fs::write(static_dest.join("base.css"), base_css);
+    let _ = fs::write(static_dest.join("index.js"), index_js);
+    println!("copied embedded base.css and index.js");
 
-    let interpreter_static = Path::new("interpreter/static");
-    if interpreter_static.exists() {
-        if let Ok(entries) = fs::read_dir(interpreter_static) {
-            for entry in entries.flatten() {
-                let path = entry.path();
-                if path.is_file() {
-                    if let Some(file_name) = path.file_name() {
-                        let _ = fs::copy(&path, static_dest.join(file_name));
-                    }
-                }
-            }
-        }
-        println!("copied interpreter files from interpreter/static");
-    } else {
-        println!("Warning: interpreter/static directory not found");
-    }
+    let interpreter_js = include_str!("../interpreter/static/interpreter.js");
+    let lexer_js = include_str!("../interpreter/static/lexer.js");
+    let parser_js = include_str!("../interpreter/static/parser.js");
+    let _ = fs::write(static_dest.join("interpreter.js"), interpreter_js);
+    let _ = fs::write(static_dest.join("lexer.js"), lexer_js);
+    let _ = fs::write(static_dest.join("parser.js"), parser_js);
+    println!("copied embedded interpreter files");
 }
