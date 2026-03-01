@@ -52,13 +52,17 @@ title: 'My book'
 Hi
 ```
 
-### If you are a [nix](https://nixos.org/download/) user, the repo flake exposes a `devShell` to download all the dependencies and have a ready to use environment. You can enter it with:
+This examples are available in the [template](https://github.com/daniqss/stepcode/tree/main/template) folder of the repository.
+
+### nix
+If you are a [nix](https://nixos.org/download/) user, the repo flake exposes a `devShell` to download all the dependencies and have a ready to use environment. You can enter it with:
 
 ```sh
 nix develop .
 ```
 
-Furthermore, a template book is available using:
+# Template
+Furthermore, the template book is available using:
 
 ```sh
 nix flake new --template github:daniqss/stepcode#book my-book

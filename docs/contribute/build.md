@@ -1,5 +1,5 @@
 ---
-title: 'How to build stepcode and the documentation'
+title: 'Building stepcode'
 ---
 
 # {{title}}
