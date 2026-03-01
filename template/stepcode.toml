@@ -1,0 +1,11 @@
+[book]
+name = "My book"
+author = "Me of course"
+
+chapters = [
+    # here you must list all the chapters of your book, in order.
+    "blog/first-post.md",
+    "blog/second-post.md",
+
+    "cooking/first-recipe.md",
+]
