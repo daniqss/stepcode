@@ -100,6 +100,93 @@ stepcode
 └── LICENSE.txt             # GPL-3.0 License details
 ```
 
+### Interpreter diagram
+
+```mermaid
+---
+config:
+  theme: neo-dark
+  look: classic
+---
+classDiagram
+    class Lexer {
+        +input: String
+        +position: Number
+        +line: Number
+        +column: Number
+        +tokens: Array
+        +indentStack: Array
+        +tokenize() Array
+        +advance() String
+        +peek() String
+        +isAtEnd() Boolean
+        +isDigit(c) Boolean
+        +isAlpha(c) Boolean
+        +isAlphaNumeric(c) Boolean
+        +skipComment()
+        +number()
+        +identifier()
+        +addToken(type, value)
+    }
+
+    class Parser {
+        +tokens: Array
+        +current: Number
+        +parse() Object
+        +parseStatement() Object
+        +parseFunctionDeclaration() Object
+        +parseIfStatement() Object
+        +parseWhileStatement() Object
+        +parseUntilStatement() Object
+        +parseRepeatStatement() Object
+        +parseForStatement() Object
+        +parseReturnStatement() Object
+        +parseExpressionOrAssignment() Object
+        +parseBlock() Array
+        +parseExpression() Object
+        +parseOr() Object
+        +parseAnd() Object
+        +parseEquality() Object
+        +parseComparison() Object
+        +parseTerm() Object
+        +parseFactor() Object
+        +parseUnary() Object
+        +parseCallOrAccess() Object
+        +parsePrimary() Object
+        +match(type) Boolean
+        +matchKeyword(keyword) Boolean
+        +matchOperator(operator) Boolean
+        +matchPunctuation(punc) Boolean
+        +check(type) Boolean
+        +checkPunctuation(punc) Boolean
+        +consume(type, message) Object
+        +consumeKeyword(keyword, message) Object
+        +consumeOperator(operator, message) Object
+        +consumePunctuation(punc, message) Object
+        +consumeStatementEnd()
+        +advance() Object
+        +isAtEnd() Boolean
+        +peek() Object
+        +previous() Object
+        +error(token, message) Error
+    }
+
+    class Interpreter {
+        <<module>>
+        +evaluateExpression(expr, stack, functions, evalState)
+        +step(ast, state)
+    }
+
+    class Index {
+        <<module>>
+        +parse(input) Object
+    }
+    Index ..> Lexer : uses
+    Index ..> Parser : uses
+    Parser ..> Lexer : consumes tokens
+    Index ..> Interpreter : uses step()
+```
+
 ## Roadmap
 
 - [ ] **Complex Data Structures**: Support for arrays, lists, and objects in the interpreter.
