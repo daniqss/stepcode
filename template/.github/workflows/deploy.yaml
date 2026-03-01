@@ -34,7 +34,7 @@ jobs:
         env:
           STEPCODE_ENV: production
         run: |
-          nix develop github:daniqss/stepcode --command uv run src/main.py docs
+          nix develop github:daniqss/stepcode --command cargo run -- docs
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

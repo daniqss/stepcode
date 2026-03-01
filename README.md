@@ -1,7 +1,7 @@
 # stepcode
 
 ![license](https://img.shields.io/github/license/daniqss/stepcode?style=for-the-badge&labelColor=303446&color=d9463e&logo=gnu&logoColor=ffffff)
-![python](https://img.shields.io/badge/Python-3.14+-d9463e?style=for-the-badge&labelColor=303446&color=d9463e&logo=python&logoColor=ffffff)
+![rust](https://img.shields.io/badge/Rust-1.80+-d9463e?style=for-the-badge&labelColor=303446&color=d9463e&logo=rust&logoColor=ffffff)
 ![node](https://img.shields.io/badge/Node-22+-d9463e?style=for-the-badge&labelColor=303446&color=d9463e&logo=node.js&logoColor=ffffff)
 ![stars](https://img.shields.io/github/stars/daniqss/stepcode?style=for-the-badge&labelColor=303446&color=d9463e&logo=github&logoColor=ffffff)
 
@@ -28,25 +28,28 @@ Learning to code often feels abstract. **stepcode** bridges the gap between stat
 - **Visual State Tracking**: Real-time display of variable values and program counter.
 - **CLI Debugging**: Run and debug pseudocode files locally in the terminal with the included CLI tool.
 
-## Prerequisites
-
-- **Python** (>= 3.14)
-- **uv** (Python package manager)
-- **Node.js** (for the CLI and serving the site)
-
 ## Installation
 
-1. Clone the repository:
+### GitHub Releases
+Download the pre-compiled binary for your architecture from the [GitHub Releases](https://github.com/daniqss/stepcode/releases) page.
 
-   ```bash
-   git clone https://github.com/your-username/stepcode.git
-   cd stepcode
-   ```
+### Using Nix
+If you are a [Nix](https://nixos.org/) user, you can run **stepcode** directly:
 
-2. Install Python dependencies:
-   ```bash
-   uv sync
-   ```
+```sh
+nix run github:daniqss/stepcode -- <YOUR_BOOK_FOLDER>
+```
+
+### From Source
+You will need the [Rust toolchain](https://rustup.rs/) installed.
+
+```bash
+git clone https://github.com/daniqss/stepcode.git
+cd stepcode
+cargo build --release
+```
+
+The binary will be available at `./target/release/stepcode`.
 
 ## Usage
 
@@ -55,7 +58,9 @@ Learning to code often feels abstract. **stepcode** bridges the gap between stat
 To build the static site from the content directory:
 
 ```bash
-uv run src/main.py docs
+cargo run -- docs
+# or
+stepcode docs
 ```
 
 The output will be generated in the `dist` directory.
@@ -80,22 +85,22 @@ node interpreter/cli.js path/to/your-code.pseudocode
 
 ```bash
 stepcode
-├── .github/                # GitHub templates for issues and PRs
-├── content/                # Source content for the book
-│   ├── chapters/           # Markdown files for each lesson/chapter
+├── docs/                   # Source content for the book
+│   ├── stepcode/           # Markdown files for each lesson/chapter
 │   ├── index.md            # Landing page content
 │   └── stepcode.toml       # Book configuration and chapter order
 ├── interpreter/            # CLI version of the pseudocode interpreter
 │   ├── cli.js              # Command-line interface entry point
 │   └── tests/              # Unit tests for the parser and interpreter
-├── src/                    # Site generator source code (Python)
-│   ├── generate.py         # HTML generation logic and layouts
-│   ├── main.py             # Main entry point for the generator
-│   └── parse_content.py    # Logic for parsing Markdown and config files
-├── static/                 # Assets for the generated site
+├── src/                    # Site generator source code (Rust)
+│   ├── generate.rs         # HTML generation logic and layouts
+│   ├── main.rs             # Main entry point for the generator
+│   ├── parse.rs            # Logic for parsing Markdown and config files
+│   └── tree.rs             # Site structure representation
+├── static/                 # Assets for the generated site (embedded in binary)
 │   ├── base.css            # Global styles
-│   └── js/                 # Interpreter logic (Lexer, Parser, Runtime)
-├── pyproject.toml          # Python project configuration and dependencies
+│   └── index.js            # Frontend orchestrator
+├── Cargo.toml              # Rust project configuration
 ├── package.json            # Node.js scripts and development dependencies
 ├── flake.nix               # Nix development environment configuration
 └── LICENSE.txt             # GPL-3.0 License details

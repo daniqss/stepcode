@@ -6,20 +6,24 @@ title: 'Create your own book'
 
 Creating a static book with **stepcode** is as simple as writing standard Markdown.
 
-## Cloning the Repository
+## Installation
 
-As **stepcode** is made in Python, you must clone the repository and install the dependencies to use it. You can do this with the following commands:
+You can get the **stepcode** binary in several ways:
+
+### GitHub Releases
+Download the pre-compiled binary for your architecture from the [GitHub Releases](https://github.com/daniqss/stepcode/releases) page.
+
+### Using Nix
+If you are a [Nix](https://nixos.org/) user, you can run **stepcode** directly without installing it:
 
 ```sh
-git clone
-cd stepcode
+nix run github:daniqss/stepcode -- <YOUR_BOOK_FOLDER>
 ```
 
-To easily manage dependencies and virtual environments, we recommend using [uv](https://docs.astral.sh/uv/). To install the dependencies and run the project, use:
+Or enter a development shell with all dependencies ready:
 
 ```sh
-uv sync
-uv run src/main.py
+nix develop github:daniqss/stepcode
 ```
 
 ## Creating Your Book
@@ -60,32 +64,15 @@ You can also add custom css to override the default stepcode theme, just create 
 }
 ```
 
-### nix
-
-If you are a [nix](https://nixos.org/download/) user, the repo flake exposes a `devShell` to download all the dependencies and have a ready to use environment. You can enter it with:
-
-```sh
-nix develop .
-```
-
-## Template
-
-These examples are available in the [template](https://github.com/daniqss/stepcode/tree/main/template) folder of the repository.
-Furthermore, the template book is available with nix using:
-
-```sh
-nix flake new --template github:daniqss/stepcode#book my-book
-```
-
 ## Building the Book
 
-Instructions on how to build and host your book can be found in the [README.md](https://github.com/daniqss/stepcode?tab=readme-ov-file#usage) of the repository. If you don't want to deal with our code in local, just use the template that we provide, that will automatically build and deploy your book to Github Pages on every push to the `main` branch.
+Instructions on how to build and host your book can be found in the [README.md](https://github.com/daniqss/stepcode?tab=readme-ov-file#usage) of the repository. If you don't want to deal with the setup locally, just use the template that we provide, which will automatically build and deploy your book to GitHub Pages on every push to the `main` branch.
 
 ```sh
-uv run src/main.py <YOUR_FOLDER>
+stepcode <YOUR_FOLDER>
 ```
 
-### In Github Pages
+### In GitHub Pages
 
 If you want to host your book on Github Pages, you can copy our [workflow](https://github.com/daniqss/stepcode/blob/main/.github/workflows/release.yaml)
 If you're using the template, it already contains a workflow that will automatically build and deploy your book to Github Pages on every push to the `main` branch. You can customize it as you wish, but make sure to update the path to the book in the workflow.

@@ -6,10 +6,10 @@ title: 'Building stepcode'
 
 ## Building stepcode
 
-To build **stepcode** into source and binary distributions compatible with, for example, PyPI, you can use the following command:
+**stepcode** is available in pre-compiled binary form on the [GitHub Releases](https://github.com/daniqss/stepcode/releases) page. However, if you want to build it from source, you can follow the instructions below.
 
 ```sh
-uv build
+cargo build --release
 ```
 
 ## Building our documentation
@@ -17,7 +17,9 @@ uv build
 To build the documentation, you can use:
 
 ```sh
-uv run src/main.py docs
+cargo run -- docs
+# or
+stepcode docs
 ```
 
 ## Using nix
@@ -27,3 +29,9 @@ If you are a [nix](https://nixos.org/) user, you can use the `devShell` provided
 ```sh
 nix develop .
 ```
+
+To try the program without installing it, you can run:
+
+```sh
+nix run github:daniqss/stepcode -- <YOUR_BOOK_FOLDER>
+``` 

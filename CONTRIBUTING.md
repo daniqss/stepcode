@@ -43,7 +43,7 @@ To contribute to **stepcode**, please follow this general workflow to ensure a s
 
 ### 1. Environment Setup
 
-Before starting, ensure you have followed the installation instructions in the [README.md](./README.md). This includes setting up Python with `uv` and installing the necessary Node.js dependencies.
+Before starting, ensure you have followed the installation instructions in the [README.md](./README.md). This includes setting up the **Rust** toolchain (`cargo`) and installing the necessary Node.js dependencies for the interpreter.
 
 If you use Nix, you can simply run `nix develop` or use `direnv` to automatically enter the development shell with all tools pre-installed.
 
@@ -69,21 +69,21 @@ While working on your changes, make sure to:
   ```
 - **Build the book**: Verify that the site generator still works as expected.
   ```bash
-  uv run src/main.py content
+  cargo run -- docs
   ```
 
 ### 4. Code Quality
 
-Before committing, you must ensure your code follows the project's style guidelines. We use `eslint` and `prettier` for JavaScript, and `ruff` for Python.
+Before committing, you must ensure your code follows the project's style guidelines. We use `eslint` and `prettier` for JavaScript, and `cargo fmt` and `cargo clippy` for Rust.
 
 ```bash
 # JavaScript linting and formatting
 npm run lint
 npm run format
 
-# Python linting and formatting
-ruff check --fix .
-ruff format .
+# Rust linting and formatting
+cargo clippy --fix
+cargo fmt
 ```
 
 ### 5. Submit a Pull Request
@@ -153,15 +153,21 @@ npm run lint
 npm run format
 ```
 
-Python:
+Rust:
 
 ```bash
 # inspect errors
-ruff check .
+cargo clippy
 # inspect and fix errors
-ruff check --fix .
+cargo clippy --fix
 # format code
-ruff format .
+cargo fmt
+```
+
+or 
+
+```bash
+nix fmt
 ```
 
 ## Breaking Changes
