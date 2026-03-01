@@ -34,7 +34,7 @@ def main() -> None:
     print('resulting site tree')
     print_tree(site_tree)
 
-    write_output(site_tree, 'dist')
+    write_output(site_tree, 'dist', base_path)
 
 
 if __name__ == '__main__':

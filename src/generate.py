@@ -26,6 +26,7 @@ LAYOUT = """<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
     <link rel="stylesheet" href="{css_path}">
+    {user_css_link}
 </head>
 <body>
     <nav>
@@ -52,6 +53,7 @@ INDEX_LAYOUT = """<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{title}</title>
     <link rel="stylesheet" href="{css_path}">
+    {user_css_link}
     <style>
         body {{
             display: block;
@@ -215,12 +217,12 @@ def render_navigation(prev_node, next_node, current_page_path):
     return html
 
 
-def process_node(node, output_root, site_root, flat_tree, current_path=''):
+def process_node(node, output_root, site_root, flat_tree, has_user_css=False, current_path=''):
     if isinstance(node, DirNode):
         if node.path:
             os.makedirs(os.path.join(output_root, node.path), exist_ok=True)
         for child in node.children:
-            process_node(child, output_root, site_root, flat_tree)
+            process_node(child, output_root, site_root, flat_tree, has_user_css)
 
     elif isinstance(node, FileNode):
         output_file = os.path.join(output_root, node.path.replace('.md', '.html'))
@@ -229,6 +231,11 @@ def process_node(node, output_root, site_root, flat_tree, current_path=''):
         css_relative_path = get_asset_path(node.path, 'static/base.css')
         js_relative_path = get_asset_path(node.path, 'static/index.js')
         index_relative_path = get_asset_path(node.path, 'index.html')
+
+        user_css_link = ''
+        if has_user_css:
+            user_css_relative_path = get_asset_path(node.path, 'static/user.css')
+            user_css_link = f'<link rel="stylesheet" href="{user_css_relative_path}">'
 
         nav_html = render_nav_tree(site_root, node.path)
 
@@ -254,6 +261,7 @@ def process_node(node, output_root, site_root, flat_tree, current_path=''):
                 title=title,
                 content=node.page.render(),
                 css_path=css_relative_path,
+                user_css_link=user_css_link,
                 js_path=js_relative_path,
                 navigation=navigation_html,
                 FOOTER=FOOTER,
@@ -263,6 +271,7 @@ def process_node(node, output_root, site_root, flat_tree, current_path=''):
                 title=title,
                 content=node.page.render(),
                 css_path=css_relative_path,
+                user_css_link=user_css_link,
                 js_path=js_relative_path,
                 index_path=index_relative_path,
                 nav_tree=nav_html,
@@ -276,16 +285,22 @@ def process_node(node, output_root, site_root, flat_tree, current_path=''):
         print(f'written {node.path} -> {output_file}')
 
 
-def write_output(root_node: DirNode, output_path: str) -> None:
+def write_output(root_node: DirNode, output_path: str, base_path: str) -> None:
     if os.path.exists(output_path):
         shutil.rmtree(output_path)
     os.makedirs(output_path)
 
-    flat_tree = flatten_tree(root_node)
-    process_node(root_node, output_path, root_node, flat_tree)
-
     static_dest = os.path.join(output_path, 'static')
     os.makedirs(static_dest, exist_ok=True)
+
+    user_css_path = os.path.join(base_path, 'user.css')
+    has_user_css = os.path.isfile(user_css_path)
+    if has_user_css:
+        shutil.copy2(user_css_path, os.path.join(static_dest, 'user.css'))
+        print('copied user.css')
+
+    flat_tree = flatten_tree(root_node)
+    process_node(root_node, output_path, root_node, flat_tree, has_user_css)
 
     if os.path.exists('static'):
         for filename in ['base.css', 'index.js']:
