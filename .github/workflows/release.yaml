@@ -41,7 +41,7 @@ jobs:
         id: rename
         shell: bash
         run: |
-          BIN_NAME="mi-programa"
+          BIN_NAME="stepcode"
           SRC="target/${{ matrix.target }}/release/${BIN_NAME}${{ matrix.binary_suffix }}"
           DST="${BIN_NAME}-${{ matrix.target }}${{ matrix.binary_suffix }}"
           mv "$SRC" "$DST"
@@ -52,7 +52,7 @@ jobs:
         with:
           name: ${{ steps.rename.outputs.artifact }}
           path: ${{ steps.rename.outputs.artifact }}
-          
+
   release:
     name: Create Release
     needs: build
