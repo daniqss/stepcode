@@ -72,9 +72,8 @@ nix flake new --template github:daniqss/stepcode#book my-book
 
 ## Building the Book
 
-Instructions on how to build and host your book can be found in the [README.md](https://github.com/daniqss/stepcode?tab=readme-ov-file#usage) of the repository.
+Instructions on how to build and host your book can be found in the [README.md](https://github.com/daniqss/stepcode?tab=readme-ov-file#usage) of the repository. If you don't want to deal with our code in local, just use the template that we provide, that will automatically build and deploy your book to Github Pages on every push to the `main` branch.
 
-After using
 
 ```sh
 uv run src/main.py <YOUR_FOLDER>
