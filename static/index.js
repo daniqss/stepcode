@@ -27,16 +27,16 @@ export function parse(input) {
 }
 
 document.querySelectorAll('pre').forEach((pre) => {
-  const code = pre.textContent.trim();
+  let code = pre.textContent.trim();
 
   let ast;
   try {
     ast = parse(code);
   } catch {
-    return;
+    return; // Don't process non-stepcode pre blocks
   }
 
-  const lines = code.split('\n');
+  let lines = code.split('\n');
   let state = null;
   let running = false;
   let history = [];
@@ -45,21 +45,39 @@ document.querySelectorAll('pre').forEach((pre) => {
   wrapper.className = 'pseudo-runner';
   pre.replaceWith(wrapper);
 
+  const editor = document.createElement('textarea');
+  editor.className = 'pseudo-editor';
+  editor.value = code;
+  editor.spellcheck = false;
+  wrapper.appendChild(editor);
+
   const display = document.createElement('pre');
+  display.style.display = 'none'; // Initially hidden, shows when running
   wrapper.appendChild(display);
 
   const controls = document.createElement('div');
   controls.className = 'pseudo-runner-controls';
   wrapper.appendChild(controls);
 
+  const btn = document.createElement('button');
+  btn.textContent = '▶ Run';
+  controls.appendChild(btn);
+
   const prevBtn = document.createElement('button');
   prevBtn.textContent = '⏮ Previous';
   prevBtn.style.display = 'none';
   controls.appendChild(prevBtn);
 
-  const btn = document.createElement('button');
-  btn.textContent = '▶ Run';
-  controls.appendChild(btn);
+  const editBtn = document.createElement('button');
+  editBtn.textContent = '✏️ Edit';
+  editBtn.style.display = 'none';
+  controls.appendChild(editBtn);
+
+  const errorDisplay = document.createElement('div');
+  errorDisplay.className = 'pseudo-error';
+  errorDisplay.style.color = 'var(--accent-color)';
+  errorDisplay.style.display = 'none';
+  wrapper.appendChild(errorDisplay);
 
   function formatVars(variables) {
     const vars = Object.entries(variables || {})
@@ -70,6 +88,17 @@ document.querySelectorAll('pre').forEach((pre) => {
   }
 
   function render() {
+    if (!running) {
+      editor.style.display = 'block';
+      display.style.display = 'none';
+      editBtn.style.display = 'none';
+      return;
+    }
+
+    editor.style.display = 'none';
+    display.style.display = 'block';
+    editBtn.style.display = 'flex';
+
     const isReturning = state?.variables?.['<return>'] !== undefined;
     const rows = [];
 
@@ -94,14 +123,14 @@ document.querySelectorAll('pre').forEach((pre) => {
     if (!state) {
       btn.textContent = '▶ Run';
       running = false;
+      render(); // switch back to editor
     } else if (state.nextLine === null) {
       const vars = formatVars(state.variables);
       rows.push(`<span class="indicator">&gt;&gt;&gt; ${vars}</span>`);
       btn.textContent = '↺ Restart';
-      running = false;
+      // running remains true, waiting for user to restart or edit
     } else {
       btn.textContent = '⏭ Next';
-      running = true;
     }
 
     prevBtn.style.display = history.length > 0 ? 'flex' : 'none';
@@ -110,9 +139,22 @@ document.querySelectorAll('pre').forEach((pre) => {
   }
 
   btn.addEventListener('click', () => {
-    if (!running || !state || state.nextLine === null) {
-      state = step(ast, null);
-      history = [];
+    errorDisplay.style.display = 'none';
+    if (!running || (!state && btn.textContent === '▶ Run') || (state && state.nextLine === null)) {
+      // Start or Restart
+      code = editor.value;
+      lines = code.split('\n');
+      try {
+        ast = parse(code);
+        state = step(ast, null);
+        history = [];
+        running = true;
+      } catch (e) {
+        errorDisplay.textContent = e.message;
+        errorDisplay.style.display = 'block';
+        running = false;
+        return;
+      }
     } else {
       history.push(state);
       state = step(ast, state);
@@ -127,5 +169,15 @@ document.querySelectorAll('pre').forEach((pre) => {
     }
   });
 
+  editBtn.addEventListener('click', () => {
+    running = false;
+    state = null;
+    history = [];
+    btn.textContent = '▶ Run';
+    render();
+  });
+
+  // initial render as editor
+  editor.style.height = lines.length * 1.6 + 2 + 'em'; // approx height
   render();
 });
