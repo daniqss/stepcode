@@ -27,6 +27,13 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-25.11
 
+      - name: Run interpreter tests
+        run: |
+          nix develop --command bash -c "
+            cd interpreter
+            npm run test
+          "
+
       - name: Build site
         env:
           STEPCODE_ENV: production
