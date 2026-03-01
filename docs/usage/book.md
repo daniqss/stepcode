@@ -52,7 +52,12 @@ title: 'My book'
 Hi
 ```
 
-This examples are available in the [template](https://github.com/daniqss/stepcode/tree/main/template) folder of the repository.
+You can also add custom css to override the default stepcode theme, just create a `user.css` file in the root of your book folder and it will be automatically included in the generated site.
+```css
+:root {
+  --accent-color: rgb(60, 101, 162);
+}
+```
 
 ### nix
 
@@ -62,9 +67,9 @@ If you are a [nix](https://nixos.org/download/) user, the repo flake exposes a `
 nix develop .
 ```
 
-# Template
-
-Furthermore, the template book is available using:
+## Template
+These examples are available in the [template](https://github.com/daniqss/stepcode/tree/main/template) folder of the repository.
+Furthermore, the template book is available with nix using:
 
 ```sh
 nix flake new --template github:daniqss/stepcode#book my-book
