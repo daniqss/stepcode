@@ -207,12 +207,43 @@ npm test
 
 ### Formatting and Linting
 
+You can format and lint the entire project at once using **Nix** (if you have it installed and flakes enabled):
+
+```bash
+# Format and lint everything (Python, JavaScript, Nix)
+nix fmt
+```
+
+Alternatively, you can run the tools individually for each language:
+
+#### Python (ruff)
+
+```bash
+# Format Python code
+ruff format .
+
+# Lint and fix Python code
+ruff check --fix .
+```
+
+#### Nix (alejandra)
+
+```bash
+# Format Nix files
+alejandra .
+```
+
+#### JavaScript & Assets (ESLint/Prettier)
+
 ```bash
 # Lint the project
 npm run lint
 
 # Format the code
 npm run format
+
+# Lint and fix JavaScript
+npm run lint:fix
 ```
 
 ## License

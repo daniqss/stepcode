@@ -31,6 +31,7 @@
           python314
           uv
           ruff
+          alejandra
 
           nodejs
         ];
@@ -40,6 +41,19 @@
         '';
       };
     });
+
+    formatter = eachSystem (pkgs:
+      with pkgs;
+        writeShellScriptBin "format" ''
+          set -e
+          ${alejandra}/bin/alejandra .
+
+          ${ruff}/bin/ruff format .
+          ${ruff}/bin/ruff check --fix .
+
+          npm run format
+          npm run lint:fix
+        '');
 
     templates.default = {
       path = ./template;
