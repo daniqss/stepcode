@@ -5,6 +5,7 @@ venv/
 env/
 .env
 .direnv/
+target/
 
 # ---
 __pycache__/
