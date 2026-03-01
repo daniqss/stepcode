@@ -25,10 +25,10 @@
         '';
       };
     });
-  };
 
-  templates.default = {
-    path = ./template;
-    description = "basic template to create a new stepcode book";
+    templates.default = {
+      path = ./template;
+      description = "basic template to create a new stepcode book";
+    };
   };
 }
