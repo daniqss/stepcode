@@ -24,6 +24,7 @@ body:
       options:
         - 'Interpreter core'
         - 'Parser / AST'
+        - 'Runtime / UI'
         - 'Generator'
         - 'CLI'
         - 'Test suite / CI'
@@ -36,5 +37,3 @@ body:
     attributes:
       label: Implementation proposal
       placeholder: 'API design, data structures, internal pseudocode...'
-    validations:
-      required: true
