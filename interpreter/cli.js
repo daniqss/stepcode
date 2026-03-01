@@ -18,7 +18,15 @@
 
 import fs from 'fs';
 import readline from 'readline';
-import { parse, step } from '../static/js/index.js';
+import { Lexer } from './static/lexer.js';
+import { Parser } from './static/parser.js';
+import { step } from './static/interpreter.js';
+
+function parse(input) {
+  const lexer = new Lexer(input);
+  const parser = new Parser(lexer.tokenize());
+  return parser.parse();
+}
 
 const file = process.argv[2];
 

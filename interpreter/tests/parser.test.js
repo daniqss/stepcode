@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import * as assert from 'node:assert';
-import { Lexer } from '../../static/js/lexer.js';
-import { Parser } from '../../static/js/parser.js';
+import { Lexer } from '../static/lexer.js';
+import { Parser } from '../static/parser.js';
 
 test('Lexer: basic tokenization', () => {
   const input = `n := 4
