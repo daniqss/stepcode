@@ -4,5 +4,9 @@
   "type": "module",
   "scripts": {
     "test": "node --test tests/*.test.js"
+  },
+  "dependencies": {
+    "format": "^0.2.2",
+    "lint": "^0.8.19"
   }
 }
