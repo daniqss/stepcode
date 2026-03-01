@@ -45,7 +45,7 @@ jobs:
           SRC="target/${{ matrix.target }}/release/${BIN_NAME}${{ matrix.binary_suffix }}"
           DST="${BIN_NAME}-${{ matrix.target }}${{ matrix.binary_suffix }}"
           mv "$SRC" "$DST"
-          echo "artifact=$DST" >> $GITHUB_OUTPUT   # <-- GITHUB_OUTPUT en vez de GITHUB_ENV
+          echo "artifact=$DST" >> $GITHUB_OUTPUT
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
