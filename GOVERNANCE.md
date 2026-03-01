@@ -5,7 +5,9 @@ This project was born during a hackathon and follows a simple, collective govern
 ## Roles
 
 ### Core Maintainers
+
 The project is currently maintained by its three original authors:
+
 - **Javier Manotas Ruiz**
 - **Javier Nogueira Vera**
 - **Daniel Queijo Seoane**
