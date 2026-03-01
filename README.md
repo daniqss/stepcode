@@ -80,26 +80,31 @@ node interpreter/cli.js path/to/your-code.pseudocode
 
 ```bash
 stepcode
-├── .github/                # GitHub templates for issues and PRs
-├── content/                # Source content for the book
-│   ├── chapters/           # Markdown files for each lesson/chapter
-│   ├── index.md            # Landing page content
-│   └── stepcode.toml       # Book configuration and chapter order
-├── interpreter/            # CLI version of the pseudocode interpreter
+├── .github/                # GitHub automation (CI/CD) and community templates
+├── assets/                 # Media and visual assets for documentation
+├── docs/                   # Source content for the official stepcode book
+├── interpreter/            # Core pseudocode engine
 │   ├── cli.js              # Command-line interface entry point
-│   └── tests/              # Unit tests for the parser and interpreter
-├── src/                    # Site generator source code (Python)
-│   ├── generate.py         # HTML generation logic and layouts
-│   ├── main.py             # Main entry point for the generator
-│   └── parse_content.py    # Logic for parsing Markdown and config files
-├── static/                 # Assets for the generated site
-│   ├── base.css            # Global styles
-│   └── js/                 # Interpreter logic (Lexer, Parser, Runtime)
-├── pyproject.toml          # Python project configuration and dependencies
-├── package.json            # Node.js scripts and development dependencies
-├── flake.nix               # Nix development environment configuration
-└── LICENSE.txt             # GPL-3.0 License details
+│   ├── static/             # Shared logic (Lexer, Parser, Runtime) for CLI and Web
+│   └── tests/              # Comprehensive test suite for the interpreter
+├── src/                    # Static site generator source code (Python)
+│   ├── generate.py         # HTML layouts and site-building logic
+│   └── parse_content.py    # Content tree and Markdown parsing
+├── static/                 # Global UI assets (CSS and frontend entry point)
+├── template/               # Boilerplate/Example for creating new books
+├── flake.nix               # Reproducible Nix development environment
+├── pyproject.toml          # Python project configuration (uv)
+└── package.json            # Node.js scripts and development tools
 ```
+
+### Community & Governance
+
+To ensure a healthy Open Source ecosystem, we maintain:
+
+- **CONTRIBUTING.md**: Guidelines for code, documentation, and bug reports.
+- **GOVERNANCE.md**: Clear model for project decision-making.
+- **CODE_OF_CONDUCT.md**: Standards for a welcoming community.
+- **AUTHORS.md**: Recognition of all project contributors.
 
 ### Interpreter diagram
 
