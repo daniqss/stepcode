@@ -53,6 +53,7 @@ Hi
 ```
 
 You can also add custom css to override the default stepcode theme, just create a `user.css` file in the root of your book folder and it will be automatically included in the generated site.
+
 ```css
 :root {
   --accent-color: rgb(60, 101, 162);
@@ -68,6 +69,7 @@ nix develop .
 ```
 
 ## Template
+
 These examples are available in the [template](https://github.com/daniqss/stepcode/tree/main/template) folder of the repository.
 Furthermore, the template book is available with nix using:
 
@@ -78,7 +80,6 @@ nix flake new --template github:daniqss/stepcode#book my-book
 ## Building the Book
 
 Instructions on how to build and host your book can be found in the [README.md](https://github.com/daniqss/stepcode?tab=readme-ov-file#usage) of the repository. If you don't want to deal with our code in local, just use the template that we provide, that will automatically build and deploy your book to Github Pages on every push to the `main` branch.
-
 
 ```sh
 uv run src/main.py <YOUR_FOLDER>
