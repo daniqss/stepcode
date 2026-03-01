@@ -310,6 +310,28 @@ td {
   transform: translateY(0);
 }
 
+.pseudo-editor {
+  width: 100%;
+  background-color: transparent;
+  color: var(--text-color);
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  border: none;
+  outline: none;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.pseudo-error {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.9rem;
+  background-color: rgba(217, 70, 62, 0.1);
+  padding: 0.5rem;
+  border-radius: 4px;
+  border-left: 4px solid var(--accent-color);
+}
+
 .pseudo-runner .indicator {
   color: var(--accent-color);
   font-weight: bold;
