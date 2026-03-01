@@ -130,4 +130,4 @@ npm run format
 
 ## License
 
-This project is licensed under the GPL-3.0-only License. See `LICENSE.txt` for details.
+This project is licensed under the GPL-3.0-only License. See [LICENSE.txt](LICENSE.txt) for details. For a full list of third-party dependencies and their licenses, see [DEPENDENCIES.md](DEPENDENCIES.md).
